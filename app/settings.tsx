@@ -1,10 +1,11 @@
+import { useRouter } from 'expo-router';
+import { EmailAuthProvider, reauthenticateWithCredential, signOut, updatePassword } from 'firebase/auth';
 import { useState } from 'react';
 import { Alert, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { Button, Divider, Text, TextInput } from 'react-native-paper';
-import { EmailAuthProvider, reauthenticateWithCredential, signOut, updatePassword } from 'firebase/auth';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { auth } from '../services/firebaseConfig';
-import { useRouter } from 'expo-router';
 
 export default function SettingsScreen() {
     const [currentPassword, setCurrentPassword] = useState('');
@@ -63,6 +64,11 @@ export default function SettingsScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
+            <KeyboardAwareScrollView
+                contentContainerStyle={styles.content}
+                keyboardShouldPersistTaps="handled"
+                bottomOffset={24}
+            >
             <Text variant="headlineMedium">Settings</Text>
 
             <Text variant="titleMedium">Account</Text>
@@ -107,6 +113,7 @@ export default function SettingsScreen() {
                 style={{ marginTop: 48 }}>
                 Back to Home
             </Button>
+            </KeyboardAwareScrollView>
 
         </SafeAreaView>
     );
@@ -115,6 +122,8 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    content: {
         padding: 16,
         gap: 16,
     },

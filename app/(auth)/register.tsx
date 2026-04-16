@@ -1,10 +1,11 @@
+import { useRouter } from 'expo-router';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { StyleSheet } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
+import { Button, Text, TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Text, TextInput, Button } from 'react-native-paper';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../services/firebaseConfig';
-import { useRouter } from 'expo-router';
 
 export default function RegisterScreen() {
     const [email, setEmail] = useState('');
@@ -39,6 +40,11 @@ export default function RegisterScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
+            <KeyboardAwareScrollView
+                contentContainerStyle={styles.content}
+                keyboardShouldPersistTaps="handled"
+                bottomOffset={24}
+            >
             <Text variant='headlineLarge'>Inkwell</Text>
             <Text variant='bodyLarge'>Create an account to get started!</Text>
             <TextInput
@@ -70,6 +76,7 @@ export default function RegisterScreen() {
             <Button mode='text' onPress={() => router.push('/(auth)/login')}>
                 Already have an account? Sign in
             </Button>
+            </KeyboardAwareScrollView>
         </SafeAreaView>
     );
 }
@@ -77,9 +84,13 @@ export default function RegisterScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+    },
+    content: {
+        flexGrow: 1,
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        padding: 16,
+        padding: 24,
+        paddingTop: '20%',
         gap: 16,
     },
     input: {

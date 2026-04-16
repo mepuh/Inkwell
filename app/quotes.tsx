@@ -1,6 +1,7 @@
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { ActivityIndicator, Button, Card, Chip, Divider, Text, TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { fetchSingleQuote, Quote, quoteCategories, QuoteCategory } from '../services/quotesService';
@@ -128,7 +129,11 @@ export default function QuotesScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView contentContainerStyle={styles.content}>
+            <KeyboardAwareScrollView
+                contentContainerStyle={styles.content}
+                keyboardShouldPersistTaps="handled"
+                bottomOffset={24}
+            >
 
                 {/* Header card with introduction and back button */}
                 <Card>
@@ -312,7 +317,7 @@ export default function QuotesScreen() {
                         </Card.Content>
                     </Card>
                 )}
-            </ScrollView>
+            </KeyboardAwareScrollView>
         </SafeAreaView>
     );
 }

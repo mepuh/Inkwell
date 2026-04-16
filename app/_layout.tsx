@@ -1,5 +1,6 @@
-import { useEffect } from "react";
 import { Stack, useRouter, useSegments } from "expo-router";
+import { useEffect } from "react";
+import { KeyboardProvider } from "react-native-keyboard-controller";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AuthProvider, useAuth } from "../context/AuthContext";
 
@@ -30,9 +31,11 @@ function RootNavigator() {
 export default function RootLayout() {
   return (
     <SafeAreaProvider>
-      <AuthProvider>
-        <RootNavigator />
-      </AuthProvider>
+      <KeyboardProvider>
+        <AuthProvider>
+          <RootNavigator />
+        </AuthProvider>
+      </KeyboardProvider>
     </SafeAreaProvider>
   );
 }
