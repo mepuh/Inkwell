@@ -1,0 +1,190 @@
+[
+    {
+        "conflict": "Character vs self: fear of failure prevents action",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs society: breaking unjust laws",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs character: rivalry turns personal",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs fate: trying to escape a predicted future",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs past: guilt over a past decision",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs authority: resisting control",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs nature: survival in extreme conditions",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs trust: learning to rely on others",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs technology: losing control over AI",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs loyalty: choosing between friends",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs fear: paralysis in critical moments",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs system: corruption in power structures",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs time: racing against a deadline",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs identity: unsure who they really are",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs memory: unreliable recollection of events",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs power: corrupted by newfound abilities",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs betrayal: trust shattered by someone close",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs isolation: cut off from everyone",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs ambition: sacrificing everything for success",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs addiction: struggling with destructive habits",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs morality: making difficult ethical choices",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs family: torn between loyalty and independence",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs culture: clashing with societal norms",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs supernatural: confronting otherworldly forces",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs illness: battling a debilitating disease",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs guilt: haunted by past actions",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs prejudice: facing discrimination and bias",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs change: resisting inevitable transformation",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs hope: clinging to optimism in despair",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs revenge: consumed by desire for vengeance",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs destiny: fighting against a predetermined path",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs loneliness: yearning for connection",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs fear of the unknown: paralyzed by uncertainty",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs self-doubt: struggling with confidence",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs societal expectations: rebelling against norms",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs loss: coping with grief and change",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs greed: tempted by material wealth",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs loyalty: torn between competing allegiances",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs fear of failure: paralyzed by the possibility of defeat",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs identity crisis: struggling to define themselves",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs societal collapse: navigating a world in chaos",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs debt: trapped by obligations they cannot repay",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs legacy: burdened by the reputation of their family",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs silence: unable to reveal what they know",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs institution: fighting a system built to ignore them",
+        "type": "external"
+    },
+    {
+        "conflict": "Character vs compassion: helping an enemy at personal cost",
+        "type": "internal"
+    },
+    {
+        "conflict": "Character vs dependence: learning to stand without a mentor",
+        "type": "internal"
+    }
+]
