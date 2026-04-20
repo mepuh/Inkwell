@@ -1,7 +1,7 @@
 [
     {
-        "name": "abandoned lighthouse",
-        "description": "perched on jagged cliffs, its light long extinguished",
+        "name": "An abandoned lighthouse",
+        "description": "Perched on jagged cliffs, its light long extinguished",
         "tags": [
             "mystery",
             "dark",
@@ -11,8 +11,8 @@
         ]
     },
     {
-        "name": "floating market",
-        "description": "boats packed tightly together, filled with vibrant goods and chatter",
+        "name": "A floating market",
+        "description": "Boats packed tightly together, filled with vibrant goods and chatter",
         "tags": [
             "fantasy",
             "lively",
@@ -22,8 +22,8 @@
         ]
     },
     {
-        "name": "small town diner",
-        "description": "warm lights, worn booths, and the smell of fresh coffee",
+        "name": "A small town diner",
+        "description": "Warm lights, worn booths, and the smell of fresh coffee",
         "tags": [
             "realistic",
             "peaceful",
@@ -33,8 +33,8 @@
         ]
     },
     {
-        "name": "school campus",
-        "description": "bustling with students, secrets, and youthful energy",
+        "name": "A school campus",
+        "description": "Bustling with students, secrets, and youthful energy",
         "tags": [
             "realistic",
             "drama",
@@ -44,8 +44,8 @@
         ]
     },
     {
-        "name": "underground resistance base",
-        "description": "hidden beneath the city, buzzing with tension and secrecy",
+        "name": "An underground resistance base",
+        "description": "Hidden beneath the city, buzzing with tension and secrecy",
         "tags": [
             "sci-fi",
             "action",
@@ -55,8 +55,8 @@
         ]
     },
     {
-        "name": "castle courtyard",
-        "description": "stone walls echoing with the footsteps of knights and nobles",
+        "name": "A castle courtyard",
+        "description": "Stone walls echoing with the footsteps of knights and nobles",
         "tags": [
             "historical",
             "fantasy",
@@ -66,8 +66,8 @@
         ]
     },
     {
-        "name": "snow-covered mountain village",
-        "description": "isolated, silent, and cut off from the outside world",
+        "name": "A snow-covered mountain village",
+        "description": "Isolated, silent, and cut off from the outside world",
         "tags": [
             "cold",
             "survival",
@@ -77,8 +77,8 @@
         ]
     },
     {
-        "name": "ancient library",
-        "description": "dusty shelves filled with forgotten knowledge and secrets",
+        "name": "An ancient library",
+        "description": "Dusty shelves filled with forgotten knowledge and secrets",
         "tags": [
             "mystery",
             "historical",
@@ -88,8 +88,8 @@
         ]
     },
     {
-        "name": "neon-lit city street",
-        "description": "buzzing with life, shadows, and hidden dangers",
+        "name": "A neon-lit city street",
+        "description": "Buzzing with life, shadows, and hidden dangers",
         "tags": [
             "sci-fi",
             "urban",
@@ -99,8 +99,8 @@
         ]
     },
     {
-        "name": "deserted amusement park",
-        "description": "rusted rides creak in the wind, frozen in time",
+        "name": "A deserted amusement park",
+        "description": "Rusted rides creak in the wind, frozen in time",
         "tags": [
             "eerie",
             "abandoned",
@@ -110,8 +110,8 @@
         ]
     },
     {
-        "name": "royal palace",
-        "description": "lavish halls hiding political intrigue",
+        "name": "A royal palace",
+        "description": "Lavish halls hiding political intrigue",
         "tags": [
             "historical",
             "drama",
@@ -121,8 +121,8 @@
         ]
     },
     {
-        "name": "foggy harbor",
-        "description": "ships drift silently through thick mist",
+        "name": "A foggy harbor",
+        "description": "Ships drift silently through thick mist",
         "tags": [
             "mystery",
             "atmospheric",
@@ -132,8 +132,8 @@
         ]
     },
     {
-        "name": "ancient ruins",
-        "description": "crumbling stone structures echoing forgotten history",
+        "name": "Ancient ruins",
+        "description": "Crumbling stone structures echoing forgotten history",
         "tags": [
             "fantasy",
             "adventure",
@@ -143,8 +143,8 @@
         ]
     },
     {
-        "name": "space station corridor",
-        "description": "metal walls hum with distant machinery",
+        "name": "A space station corridor",
+        "description": "Metal walls hum with distant machinery",
         "tags": [
             "sci-fi",
             "action",
@@ -154,8 +154,8 @@
         ]
     },
     {
-        "name": "forest clearing",
-        "description": "sunlight breaks through trees onto untouched ground",
+        "name": "A forest clearing",
+        "description": "Sunlight breaks through trees onto untouched ground",
         "tags": [
             "nature",
             "peaceful",
@@ -165,8 +165,8 @@
         ]
     },
     {
-        "name": "high-security prison",
-        "description": "cold, controlled, and constantly watched",
+        "name": "A high-security prison",
+        "description": "Cold, controlled, and constantly watched",
         "tags": [
             "dark",
             "suspense",
@@ -176,8 +176,8 @@
         ]
     },
     {
-        "name": "underground subway",
-        "description": "crowded, loud, and full of fleeting moments",
+        "name": "An underground subway",
+        "description": "Crowded, loud, and full of fleeting moments",
         "tags": [
             "urban",
             "realistic",
@@ -187,8 +187,8 @@
         ]
     },
     {
-        "name": "hidden garden",
-        "description": "lush and untouched, concealed behind ordinary walls",
+        "name": "A hidden garden",
+        "description": "Lush and untouched, concealed behind ordinary walls",
         "tags": [
             "mystery",
             "nature",
@@ -198,8 +198,8 @@
         ]
     },
     {
-        "name": "deep ocean trench",
-        "description": "dark, crushing, and largely unexplored",
+        "name": "A deep ocean trench",
+        "description": "Dark, crushing, and largely unexplored",
         "tags": [
             "suspense",
             "mystery",
@@ -209,8 +209,8 @@
         ]
     },
     {
-        "name": "train station at midnight",
-        "description": "nearly empty, echoing with distant movement",
+        "name": "A train station at midnight",
+        "description": "Nearly empty, echoing with distant movement",
         "tags": [
             "emotional",
             "atmospheric",
@@ -220,8 +220,8 @@
         ]
     },
     {
-        "name": "battlefield aftermath",
-        "description": "silent except for the remnants of destruction",
+        "name": "A battlefield aftermath",
+        "description": "Silent except for the remnants of destruction",
         "tags": [
             "dark",
             "emotional",
@@ -231,8 +231,8 @@
         ]
     },
     {
-        "name": "abandoned carnival",
-        "description": "faded colors and broken rides tell forgotten stories",
+        "name": "An abandoned carnival",
+        "description": "Faded colors and broken rides tell forgotten stories",
         "tags": [
             "eerie",
             "abandoned",
@@ -242,8 +242,8 @@
         ]
     },
     {
-        "name": "mountain monastery",
-        "description": "serene and isolated, with ancient wisdom",
+        "name": "A mountain monastery",
+        "description": "Serene and isolated, with ancient wisdom",
         "tags": [
             "mystery",
             "peaceful",
@@ -253,8 +253,8 @@
         ]
     },
     {
-        "name": "underground cave system",
-        "description": "dark tunnels filled with unknown dangers",
+        "name": "An underground cave system",
+        "description": "Dark tunnels filled with unknown dangers",
         "tags": [
             "mystery",
             "adventure",
@@ -264,8 +264,8 @@
         ]
     },
     {
-        "name": "abandoned hospital",
-        "description": "echoes of past patients and forgotten care",
+        "name": "An abandoned hospital",
+        "description": "Echoes of past patients and forgotten care",
         "tags": [
             "eerie",
             "abandoned",
@@ -275,8 +275,8 @@
         ]
     },
     {
-        "name": "space colony dome",
-        "description": "a fragile bubble of life in the vastness of space",
+        "name": "A space colony dome",
+        "description": "A fragile bubble of life in the vastness of space",
         "tags": [
             "sci-fi",
             "adventure",
@@ -286,8 +286,8 @@
         ]
     },
     {
-        "name": "medieval marketplace",
-        "description": "bustling with merchants, townsfolk, and intrigue",
+        "name": "A medieval marketplace",
+        "description": "Bustling with merchants, townsfolk, and intrigue",
         "tags": [
             "historical",
             "lively",
@@ -297,8 +297,8 @@
         ]
     },
     {
-        "name": "abandoned subway station",
-        "description": "graffiti-covered walls and forgotten tracks",
+        "name": "An abandoned subway station",
+        "description": "Graffiti-covered walls and forgotten tracks",
         "tags": [
             "eerie",
             "abandoned",
@@ -308,8 +308,8 @@
         ]
     },
     {
-        "name": "enchanted forest",
-        "description": "glowing flora and magical creatures abound",
+        "name": "An enchanted forest",
+        "description": "Glowing flora and magical creatures abound",
         "tags": [
             "fantasy",
             "mystery",
@@ -319,8 +319,8 @@
         ]
     },
     {
-        "name": "post-apocalyptic wasteland",
-        "description": "desolate landscapes scarred by disaster and survival",
+        "name": "A post-apocalyptic wasteland",
+        "description": "Desolate landscapes scarred by disaster and survival",
         "tags": [
             "dystopian",
             "dark",
@@ -330,8 +330,8 @@
         ]
     },
     {
-        "name": "abandoned mansion",
-        "description": "decaying grandeur filled with secrets and shadows",
+        "name": "An abandoned mansion",
+        "description": "Decaying grandeur filled with secrets and shadows",
         "tags": [
             "eerie",
             "abandoned",
@@ -341,8 +341,8 @@
         ]
     },
     {
-        "name": "town square",
-        "description": "bustling with life, secrets, and public drama",
+        "name": "A town square",
+        "description": "Bustling with life, secrets, and public drama",
         "tags": [
             "realistic",
             "lively",
@@ -352,8 +352,8 @@
         ]
     },
     {
-        "name": "underground bunker",
-        "description": "a hidden refuge filled with supplies and secrets",
+        "name": "An underground bunker",
+        "description": "A hidden refuge filled with supplies and secrets",
         "tags": [
             "sci-fi",
             "suspense",
@@ -363,8 +363,8 @@
         ]
     },
     {
-        "name": "abandoned church",
-        "description": "stained glass windows shattered, pews covered in dust",
+        "name": "An abandoned church",
+        "description": "Stained glass windows shattered, pews covered in dust",
         "tags": [
             "eerie",
             "abandoned",
@@ -374,8 +374,8 @@
         ]
     },
     {
-        "name": "spacecraft interior",
-        "description": "confined and high-tech, with a view of the stars outside",
+        "name": "A spacecraft interior",
+        "description": "Confined and high-tech, with a view of the stars outside",
         "tags": [
             "sci-fi",
             "adventure",
@@ -385,8 +385,8 @@
         ]
     },
     {
-        "name": "medieval castle",
-        "description": "stone walls, hidden passages, and royal intrigue",
+        "name": "A medieval castle",
+        "description": "Stone walls, hidden passages, and royal intrigue",
         "tags": [
             "historical",
             "fantasy",
@@ -396,8 +396,8 @@
         ]
     },
     {
-        "name": "tropical island",
-        "description": "white sandy beaches, crystal clear waters, and lush vegetation",
+        "name": "A tropical island",
+        "description": "White sandy beaches, crystal clear waters, and lush vegetation",
         "tags": [
             "romantic",
             "adventure",
@@ -407,8 +407,8 @@
         ]
     },
     {
-        "name": "abandoned factory",
-        "description": "rusting machinery and empty halls echoing with past industry",
+        "name": "An abandoned factory",
+        "description": "Rusting machinery and empty halls echoing with past industry",
         "tags": [
             "eerie",
             "abandoned",
@@ -418,8 +418,8 @@
         ]
     },
     {
-        "name": "space elevator platform",
-        "description": "a futuristic structure reaching into the sky, bustling with activity",
+        "name": "A space elevator platform",
+        "description": "A futuristic structure reaching into the sky, bustling with activity",
         "tags": [
             "sci-fi",
             "adventure",
@@ -429,8 +429,8 @@
         ]
     },
     {
-        "name": "medieval village",
-        "description": "thatched roofs, cobblestone streets, and a close-knit community",
+        "name": "A medieval village",
+        "description": "Thatched roofs, cobblestone streets, and a close-knit community",
         "tags": [
             "historical",
             "fantasy",
@@ -440,8 +440,8 @@
         ]
     },
     {
-        "name": "night club",
-        "description": "pulsing music, flashing lights, and a mix of danger and allure",
+        "name": "A night club",
+        "description": "Pulsing music, flashing lights, and a mix of danger and allure",
         "tags": [
             "urban",
             "suspense",
@@ -451,8 +451,8 @@
         ]
     },
     {
-        "name": "coastal cliffside",
-        "description": "dramatic views of the ocean, with waves crashing below",
+        "name": "A coastal cliffside",
+        "description": "Dramatic views of the ocean, with waves crashing below",
         "tags": [
             "nature",
             "atmospheric",
@@ -462,8 +462,8 @@
         ]
     },
     {
-        "name": "alpine town",
-        "description": "nestled in the mountains with snow-capped peaks and cozy chalets",
+        "name": "An alpine town",
+        "description": "Nestled in the mountains with snow-capped peaks and cozy chalets",
         "tags": [
             "nature",
             "peaceful",
@@ -473,8 +473,8 @@
         ]
     },
     {
-        "name": "small modern constitutional monarchy",
-        "description": "a prosperous realm with a rich history and unique culture",
+        "name": "A small modern constitutional monarchy",
+        "description": "A prosperous realm with a rich history and unique culture",
         "tags": [
             "historical",
             "political",
@@ -484,8 +484,8 @@
         ]
     },
     {
-        "name": "big city skyscraper rooftop",
-        "description": "overlooking a sprawling urban landscape at night",
+        "name": "A big city skyscraper rooftop",
+        "description": "Overlooking a sprawling urban landscape at night",
         "tags": [
             "urban",
             "suspense",
@@ -495,8 +495,8 @@
         ]
     },
     {
-        "name": "space battle arena",
-        "description": "a high-stakes combat zone in the depths of space",
+        "name": "A space battle arena",
+        "description": "A high-stakes combat zone in the depths of space",
         "tags": [
             "sci-fi",
             "action",
@@ -506,8 +506,8 @@
         ]
     },
     {
-        "name": "medieval tavern",
-        "description": "a lively gathering place filled with stories, secrets, and ale",
+        "name": "A medieval tavern",
+        "description": "A lively gathering place filled with stories, secrets, and ale",
         "tags": [
             "historical",
             "fantasy",
@@ -517,8 +517,8 @@
         ]
     },
     {
-        "name": "secret base",
-        "description": "hidden and fortified, a hub for clandestine operations",
+        "name": "A secret base",
+        "description": "Hidden and fortified, a hub for clandestine operations",
         "tags": [
             "sci-fi",
             "suspense",
@@ -528,8 +528,8 @@
         ]
     },
     {
-        "name": "underwater city",
-        "description": "a submerged metropolis teeming with aquatic life and mystery",
+        "name": "An underwater city",
+        "description": "A submerged metropolis teeming with aquatic life and mystery",
         "tags": [
             "sci-fi",
             "fantasy",
@@ -539,8 +539,8 @@
         ]
     },
     {
-        "name": "space research station",
-        "description": "a hub of scientific discovery orbiting a distant planet",
+        "name": "A space research station",
+        "description": "A hub of scientific discovery orbiting a distant planet",
         "tags": [
             "sci-fi",
             "adventure",
@@ -550,8 +550,8 @@
         ]
     },
     {
-        "name": "medieval cathedral",
-        "description": "soaring arches, stained glass windows, and a sense of awe and reverence",
+        "name": "A medieval cathedral",
+        "description": "Soaring arches, stained glass windows, and a sense of awe and reverence",
         "tags": [
             "historical",
             "fantasy",
@@ -561,8 +561,8 @@
         ]
     },
     {
-        "name": "tropical rainforest canopy",
-        "description": "a lush, vibrant world teeming with life above the forest floor",
+        "name": "A tropical rainforest canopy",
+        "description": "A lush, vibrant world teeming with life above the forest floor",
         "tags": [
             "nature",
             "adventure",
@@ -572,8 +572,8 @@
         ]
     },
     {
-        "name": "floating city in the clouds",
-        "description": "suspended by advanced technology and shrouded in mist",
+        "name": "A floating city in the clouds",
+        "description": "Suspended by advanced technology and shrouded in mist",
         "tags": [
             "sci-fi",
             "fantasy",
@@ -583,8 +583,8 @@
         ]
     },
     {
-        "name": "boarding school",
-        "description": "a prestigious institution where students live and study under one roof",
+        "name": "A boarding school",
+        "description": "A prestigious institution where students live and study under one roof",
         "tags": [
             "realistic",
             "drama",
@@ -594,8 +594,8 @@
         ]
     },
     {
-        "name": "rural farmhouse",
-        "description": "a rustic home surrounded by fields and forests, exuding charm and isolation",
+        "name": "A rural farmhouse",
+        "description": "A rustic home surrounded by fields and forests, exuding charm and isolation",
         "tags": [
             "nature",
             "peaceful",
@@ -605,8 +605,8 @@
         ]
     },
     {
-        "name": "far away galaxy",
-        "description": "a distant celestial body filled with wonder and mystery",
+        "name": "A far away galaxy",
+        "description": "A distant celestial body filled with wonder and mystery",
         "tags": [
             "sci-fi",
             "adventure",
@@ -616,8 +616,8 @@
         ]
     },
     {
-        "name": "post-apocalyptic city",
-        "description": "a ruined metropolis where survivors must navigate a harsh new world",
+        "name": "A post-apocalyptic city",
+        "description": "A ruined metropolis where survivors must navigate a harsh new world",
         "tags": [
             "dystopian",
             "suspense",
@@ -627,8 +627,8 @@
         ]
     },
     {
-        "name": "enchanted castle",
-        "description": "a mystical fortress hidden in the heart of a magical realm",
+        "name": "An enchanted castle",
+        "description": "A mystical fortress hidden in the heart of a magical realm",
         "tags": [
             "fantasy",
             "adventure",
@@ -638,8 +638,8 @@
         ]
     },
     {
-        "name": "underwater research lab",
-        "description": "a cutting-edge facility submerged beneath the ocean's surface",
+        "name": "An underwater research lab",
+        "description": "A cutting-edge facility submerged beneath the ocean's surface",
         "tags": [
             "sci-fi",
             "drama",
@@ -649,8 +649,8 @@
         ]
     },
     {
-        "name": "medieval battlefield",
-        "description": "a chaotic and brutal landscape scarred by war and heroism",
+        "name": "A medieval battlefield",
+        "description": "A chaotic and brutal landscape scarred by war and heroism",
         "tags": [
             "historical",
             "war",
@@ -660,8 +660,8 @@
         ]
     },
     {
-        "name": "space pirate hideout",
-        "description": "a secret base for outlaws and renegades in the depths of space",
+        "name": "A space pirate hideout",
+        "description": "A secret base for outlaws and renegades in the depths of space",
         "tags": [
             "sci-fi",
             "action",
@@ -671,8 +671,8 @@
         ]
     },
     {
-        "name": "rain-soaked old city quarter",
-        "description": "narrow streets, shuttered windows, and secrets behind every door",
+        "name": "A rain-soaked old city quarter",
+        "description": "Narrow streets, shuttered windows, and secrets behind every door",
         "tags": [
             "mystery",
             "historical",
@@ -682,8 +682,8 @@
         ]
     },
     {
-        "name": "frontier farming settlement",
-        "description": "a stubborn community surviving at the edge of law and wilderness",
+        "name": "A frontier farming settlement",
+        "description": "A stubborn community surviving at the edge of law and wilderness",
         "tags": [
             "realistic",
             "survival",
@@ -693,8 +693,8 @@
         ]
     },
     {
-        "name": "forgotten observatory",
-        "description": "a dome of cracked glass where old charts still point to impossible things",
+        "name": "A forgotten observatory",
+        "description": "A dome of cracked glass where old charts still point to impossible things",
         "tags": [
             "fantasy",
             "mystery",
@@ -704,8 +704,8 @@
         ]
     },
     {
-        "name": "court archives",
-        "description": "vaulted rooms of records where one missing page can topple a kingdom",
+        "name": "Court archives",
+        "description": "Vaulted rooms of records where one missing page can topple a kingdom",
         "tags": [
             "historical",
             "drama",
@@ -715,8 +715,8 @@
         ]
     },
     {
-        "name": "winter caravan route",
-        "description": "a perilous trade road crossed under blizzards and uneasy truces",
+        "name": "A winter caravan route",
+        "description": "A perilous trade road crossed under blizzards and uneasy truces",
         "tags": [
             "adventure",
             "cold",
@@ -726,8 +726,8 @@
         ]
     },
     {
-        "name": "quiet riverside cemetery",
-        "description": "weathered stones and willow trees where old stories refuse to stay buried",
+        "name": "A quiet riverside cemetery",
+        "description": "Weathered stones and willow trees where old stories refuse to stay buried",
         "tags": [
             "dark",
             "mystery",

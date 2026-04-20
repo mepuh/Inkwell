@@ -1,6 +1,6 @@
 [
     {
-        "goal": "prove their worth to someone who doubts them",
+        "goal": "To prove their worth to someone who doubts them",
         "type": "emotional",
         "tags": [
             "achievement",
@@ -8,7 +8,7 @@
         ]
     },
     {
-        "goal": "escape a dangerous past",
+        "goal": "To escape a dangerous past",
         "type": "survival",
         "tags": [
             "survival",
@@ -16,7 +16,7 @@
         ]
     },
     {
-        "goal": "protect a loved one at any cost",
+        "goal": "To protect a loved one at any cost",
         "type": "relational",
         "tags": [
             "relationship",
@@ -25,7 +25,7 @@
         ]
     },
     {
-        "goal": "uncover the truth behind a hidden conspiracy",
+        "goal": "To uncover the truth behind a hidden conspiracy",
         "type": "moral",
         "tags": [
             "moral",
@@ -33,7 +33,7 @@
         ]
     },
     {
-        "goal": "gain freedom from a controlling force",
+        "goal": "To gain freedom from a controlling force",
         "type": "survival",
         "tags": [
             "survival",
@@ -41,7 +41,7 @@
         ]
     },
     {
-        "goal": "earn forgiveness",
+        "goal": "To earn forgiveness",
         "type": "emotional",
         "tags": [
             "redemption",
@@ -49,7 +49,7 @@
         ]
     },
     {
-        "goal": "be remembered for something meaningful",
+        "goal": "To be remembered for something meaningful",
         "type": "existential",
         "tags": [
             "existential",
@@ -57,7 +57,7 @@
         ]
     },
     {
-        "goal": "win a competition that defines their future",
+        "goal": "To win a competition that defines their future",
         "type": "achievement",
         "tags": [
             "achievement",
@@ -65,7 +65,7 @@
         ]
     },
     {
-        "goal": "hide a dangerous secret",
+        "goal": "To hide a dangerous secret",
         "type": "protective",
         "tags": [
             "protective",
@@ -73,7 +73,7 @@
         ]
     },
     {
-        "goal": "become someone they can respect",
+        "goal": "To become someone they can respect",
         "type": "growth",
         "tags": [
             "growth",
@@ -81,7 +81,7 @@
         ]
     },
     {
-        "goal": "reunite with someone they lost",
+        "goal": "To reunite with someone they lost",
         "type": "emotional",
         "tags": [
             "relationship",
@@ -90,7 +90,7 @@
         ]
     },
     {
-        "goal": "break a generational cycle",
+        "goal": "To break a generational cycle",
         "type": "existential",
         "tags": [
             "existential",
@@ -98,7 +98,7 @@
         ]
     },
     {
-        "goal": "achieve power or influence",
+        "goal": "To achieve power or influence",
         "type": "survival",
         "tags": [
             "achievement",
@@ -106,7 +106,7 @@
         ]
     },
     {
-        "goal": "find where they truly belong",
+        "goal": "To find where they truly belong",
         "type": "identity",
         "tags": [
             "identity",
@@ -114,7 +114,7 @@
         ]
     },
     {
-        "goal": "redeem a past mistake",
+        "goal": "To redeem a past mistake",
         "type": "emotional",
         "tags": [
             "redemption",
@@ -122,7 +122,7 @@
         ]
     },
     {
-        "goal": "gain control over their abilities",
+        "goal": "To gain control over their abilities",
         "type": "growth",
         "tags": [
             "growth",
@@ -130,7 +130,7 @@
         ]
     },
     {
-        "goal": "expose hidden truth",
+        "goal": "To expose hidden truth",
         "type": "moral",
         "tags": [
             "moral",
@@ -138,7 +138,7 @@
         ]
     },
     {
-        "goal": "build a new life from nothing",
+        "goal": "To build a new life from nothing",
         "type": "survival",
         "tags": [
             "survival",
@@ -146,7 +146,7 @@
         ]
     },
     {
-        "goal": "protect their identity at all costs",
+        "goal": "To protect their identity at all costs",
         "type": "protective",
         "tags": [
             "identity",
@@ -154,7 +154,7 @@
         ]
     },
     {
-        "goal": "prove someone wrong",
+        "goal": "To prove someone wrong",
         "type": "achievement",
         "tags": [
             "achievement",
@@ -162,7 +162,7 @@
         ]
     },
     {
-        "goal": "find a lost item of great importance",
+        "goal": "To find a lost item of great importance",
         "type": "quest",
         "tags": [
             "quest",
@@ -170,7 +170,7 @@
         ]
     },
     {
-        "goal": "overcome a personal fear",
+        "goal": "To overcome a personal fear",
         "type": "growth",
         "tags": [
             "growth",
@@ -178,7 +178,7 @@
         ]
     },
     {
-        "goal": "save someone from danger",
+        "goal": "To save someone from danger",
         "type": "achievement",
         "tags": [
             "achievement",
@@ -186,7 +186,7 @@
         ]
     },
     {
-        "goal": "escape an oppressive situation",
+        "goal": "To escape an oppressive situation",
         "type": "survival",
         "tags": [
             "survival",
@@ -194,7 +194,7 @@
         ]
     },
     {
-        "goal": "reclaim something taken from them",
+        "goal": "To reclaim something taken from them",
         "type": "moral",
         "tags": [
             "moral",
@@ -202,7 +202,7 @@
         ]
     },
     {
-        "goal": "discover their true potential",
+        "goal": "To discover their true potential",
         "type": "identity",
         "tags": [
             "identity",
@@ -210,7 +210,7 @@
         ]
     },
     {
-        "goal": "make amends for past actions",
+        "goal": "To make amends for past actions",
         "type": "moral",
         "tags": [
             "redemption",
@@ -218,7 +218,7 @@
         ]
     },
     {
-        "goal": "uncover family secrets",
+        "goal": "To uncover family secrets",
         "type": "identity",
         "tags": [
             "identity",
@@ -226,7 +226,7 @@
         ]
     },
     {
-        "goal": "survive against overwhelming odds",
+        "goal": "To survive against overwhelming odds",
         "type": "survival",
         "tags": [
             "survival",
@@ -234,7 +234,7 @@
         ]
     },
     {
-        "goal": "find love in unexpected places",
+        "goal": "To find love in unexpected places",
         "type": "emotional",
         "tags": [
             "romance",
@@ -243,7 +243,7 @@
         ]
     },
     {
-        "goal": "defy societal expectations",
+        "goal": "To defy societal expectations",
         "type": "moral",
         "tags": [
             "moral",
@@ -251,7 +251,7 @@
         ]
     },
     {
-        "goal": "protect a secret that could destroy them",
+        "goal": "To protect a secret that could destroy them",
         "type": "quest",
         "tags": [
             "quest",
@@ -259,7 +259,7 @@
         ]
     },
     {
-        "goal": "achieve a lifelong dream",
+        "goal": "To achieve a lifelong dream",
         "type": "achievement",
         "tags": [
             "achievement",
@@ -267,7 +267,7 @@
         ]
     },
     {
-        "goal": "escape a dangerous situation",
+        "goal": "To escape a dangerous situation",
         "type": "survival",
         "tags": [
             "survival",
@@ -275,7 +275,7 @@
         ]
     },
     {
-        "goal": "find a missing person",
+        "goal": "To find a missing person",
         "type": "quest",
         "tags": [
             "quest",
@@ -283,7 +283,7 @@
         ]
     },
     {
-        "goal": "overcome a powerful enemy",
+        "goal": "To overcome a powerful enemy",
         "type": "achievement",
         "tags": [
             "achievement",
@@ -291,7 +291,7 @@
         ]
     },
     {
-        "goal": "rebuild after a devastating loss",
+        "goal": "To rebuild after a devastating loss",
         "type": "survival",
         "tags": [
             "survival",
@@ -299,7 +299,7 @@
         ]
     },
     {
-        "goal": "find a new purpose after a major change",
+        "goal": "To find a new purpose after a major change",
         "type": "growth",
         "tags": [
             "growth",
@@ -307,7 +307,7 @@
         ]
     },
     {
-        "goal": "protect their loved ones from harm",
+        "goal": "To protect their loved ones from harm",
         "type": "protective",
         "tags": [
             "protective",
@@ -315,7 +315,7 @@
         ]
     },
     {
-        "goal": "uncover the truth about their past",
+        "goal": "To uncover the truth about their past",
         "type": "identity",
         "tags": [
             "identity",
@@ -323,7 +323,7 @@
         ]
     },
     {
-        "goal": "escape a dangerous location",
+        "goal": "To escape a dangerous location",
         "type": "survival",
         "tags": [
             "survival",
@@ -331,7 +331,7 @@
         ]
     },
     {
-        "goal": "find a way to reverse a curse or affliction",
+        "goal": "To find a way to reverse a curse or affliction",
         "type": "quest",
         "tags": [
             "quest",
@@ -339,7 +339,7 @@
         ]
     },
     {
-        "goal": "prove their innocence",
+        "goal": "To prove their innocence",
         "type": "moral",
         "tags": [
             "moral",
@@ -347,7 +347,7 @@
         ]
     },
     {
-        "goal": "find a way to save the world",
+        "goal": "To find a way to save the world",
         "type": "achievement",
         "tags": [
             "achievement",
@@ -355,7 +355,7 @@
         ]
     },
     {
-        "goal": "overcome a personal flaw",
+        "goal": "To overcome a personal flaw",
         "type": "growth",
         "tags": [
             "growth",
@@ -363,7 +363,7 @@
         ]
     },
     {
-        "goal": "reconcile with someone they've hurt",
+        "goal": "To reconcile with someone they've hurt",
         "type": "relational",
         "tags": [
             "relationship",
@@ -372,7 +372,7 @@
         ]
     },
     {
-        "goal": "find a way to survive in a hostile environment",
+        "goal": "To find a way to survive in a hostile environment",
         "type": "survival",
         "tags": [
             "survival",
@@ -380,7 +380,7 @@
         ]
     },
     {
-        "goal": "discover a hidden talent or ability",
+        "goal": "To discover a hidden talent or ability",
         "type": "identity",
         "tags": [
             "identity",
@@ -388,7 +388,7 @@
         ]
     },
     {
-        "goal": "escape a dangerous relationship",
+        "goal": "To escape a dangerous relationship",
         "type": "survival",
         "tags": [
             "relationship",
@@ -397,7 +397,7 @@
         ]
     },
     {
-        "goal": "find a way to bring someone back to life",
+        "goal": "To find a way to bring someone back to life",
         "type": "relational",
         "tags": [
             "relationship",
@@ -406,7 +406,7 @@
         ]
     },
     {
-        "goal": "overcome a powerful addiction",
+        "goal": "To overcome a powerful addiction",
         "type": "growth",
         "tags": [
             "growth",
@@ -414,7 +414,7 @@
         ]
     },
     {
-        "goal": "find a way to communicate with someone who can't speak",
+        "goal": "To find a way to communicate with someone who can't speak",
         "type": "emotional",
         "tags": [
             "emotional",
@@ -422,7 +422,7 @@
         ]
     },
     {
-        "goal": "uncover a hidden conspiracy",
+        "goal": "To uncover a hidden conspiracy",
         "type": "quest",
         "tags": [
             "quest",
@@ -430,7 +430,7 @@
         ]
     },
     {
-        "goal": "find a way to stop a natural disaster",
+        "goal": "To find a way to stop a natural disaster",
         "type": "achievement",
         "tags": [
             "achievement",
@@ -438,7 +438,7 @@
         ]
     },
     {
-        "goal": "overcome a powerful curse",
+        "goal": "To overcome a powerful curse",
         "type": "achievement",
         "tags": [
             "achievement",
@@ -446,7 +446,7 @@
         ]
     },
     {
-        "goal": "find a way to escape a dangerous situation",
+        "goal": "To find a way to escape a dangerous situation",
         "type": "survival",
         "tags": [
             "survival",
@@ -454,7 +454,7 @@
         ]
     },
     {
-        "goal": "discover the truth about a mysterious event",
+        "goal": "To discover the truth about a mysterious event",
         "type": "quest",
         "tags": [
             "quest",
@@ -462,7 +462,7 @@
         ]
     },
     {
-        "goal": "find a way to save someone they love",
+        "goal": "To find a way to save someone they love",
         "type": "achievement",
         "tags": [
             "achievement",
@@ -471,7 +471,7 @@
         ]
     },
     {
-        "goal": "rebuild their life after a devastating loss",
+        "goal": "To rebuild their life after a devastating loss",
         "type": "survival",
         "tags": [
             "survival",
@@ -479,7 +479,7 @@
         ]
     },
     {
-        "goal": "keep a fragile peace between rival factions",
+        "goal": "To keep a fragile peace between rival factions",
         "type": "relational",
         "tags": [
             "moral",
@@ -487,7 +487,7 @@
         ]
     },
     {
-        "goal": "recover a stolen heirloom tied to their lineage",
+        "goal": "To recover a stolen heirloom tied to their lineage",
         "type": "quest",
         "tags": [
             "quest",
@@ -495,7 +495,7 @@
         ]
     },
     {
-        "goal": "secure a safe home for their community",
+        "goal": "To secure a safe home for their community",
         "type": "protective",
         "tags": [
             "protective",
@@ -503,7 +503,7 @@
         ]
     },
     {
-        "goal": "learn to forgive themselves for surviving",
+        "goal": "To learn to forgive themselves for surviving",
         "type": "emotional",
         "tags": [
             "redemption",
@@ -511,7 +511,7 @@
         ]
     },
     {
-        "goal": "choose between love and duty",
+        "goal": "To choose between love and duty",
         "type": "emotional",
         "tags": [
             "romance",
@@ -519,7 +519,7 @@
         ]
     },
     {
-        "goal": "confess their feelings before it's too late",
+        "goal": "To confess their feelings before it's too late",
         "type": "emotional",
         "tags": [
             "romance",
@@ -527,7 +527,7 @@
         ]
     },
     {
-        "goal": "rebuild trust after betraying someone they love",
+        "goal": "To rebuild trust after betraying someone they love",
         "type": "relational",
         "tags": [
             "romance",
@@ -535,7 +535,7 @@
         ]
     },
     {
-        "goal": "protect a fragile romance during a crisis",
+        "goal": "To protect a fragile romance during a crisis",
         "type": "relational",
         "tags": [
             "romance",
@@ -543,7 +543,7 @@
         ]
     },
     {
-        "goal": "find the courage to ask for a second chance",
+        "goal": "To find the courage to ask for a second chance",
         "type": "growth",
         "tags": [
             "romance",
@@ -551,7 +551,7 @@
         ]
     },
     {
-        "goal": "cross impossible distance to reunite with their partner",
+        "goal": "To cross impossible distance to reunite with their partner",
         "type": "quest",
         "tags": [
             "romance",
@@ -559,7 +559,7 @@
         ]
     },
     {
-        "goal": "document the truth before it is erased",
+        "goal": "To document the truth before it is erased",
         "type": "moral",
         "tags": [
             "moral",
@@ -567,7 +567,7 @@
         ]
     },
     {
-        "goal": "win back custody of someone they care for",
+        "goal": "To win back custody of someone they care for",
         "type": "relational",
         "tags": [
             "relationship",
