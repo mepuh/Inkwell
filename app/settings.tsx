@@ -141,7 +141,7 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: InkwellColors.background,
+        backgroundColor: InkwellColors.surface,
     },
     header: {
         flexDirection: 'row',
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     content: {
         padding: Spacing.lg,
         gap: Spacing.lg,
-        backgroundColor: InkwellColors.background,
+        backgroundColor: InkwellColors.surface,
     },
     input: {
         marginBottom: Spacing.xs,

@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { Button, Card, IconButton, Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import writingQuotesData from "../../assets/data/writingQuotes.json";
@@ -23,12 +23,18 @@ export default function HomeScreen() {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-                <View style={{ width: 40 }} />
-                <Text variant="titleLarge">Home</Text>
                 <IconButton
                     icon="cog"
                     size={24}
                     onPress={() => router.push('/settings')}
+                />
+            </View>
+
+            <View style={styles.logoContainer}>
+                <Image
+                    source={require('../../assets/images/inkwell/inkwell-logo-full.png')}
+                    style={styles.logo}
+                    resizeMode="contain"
                 />
             </View>
 
@@ -57,14 +63,13 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: InkwellColors.background,
+        backgroundColor: InkwellColors.surface,
     },
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingLeft: Spacing.xs,
-        paddingRight: Spacing.xs,   
+        justifyContent: 'flex-end',
+        paddingHorizontal: Spacing.xs,
         paddingVertical: Spacing.xs,
     },
     content: {
@@ -73,8 +78,17 @@ const styles = StyleSheet.create({
         paddingVertical: Spacing.lg,
         gap: Spacing.lg,
     },
+    logoContainer: {
+        alignItems: 'center',
+        paddingHorizontal: Spacing.lg,
+        paddingBottom: Spacing.sm,
+    },
+    logo: {
+        width: 300,
+        height: 300,
+    },
     card: {
-        backgroundColor: InkwellColors.surface,
+        backgroundColor: InkwellColors.background,
         borderRadius: BorderRadius.md,
     },
     author: {

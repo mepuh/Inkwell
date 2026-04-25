@@ -1,9 +1,20 @@
-import { Tabs } from "expo-router";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
+import { InkwellColors } from "../../constants/theme";
 
 export default function Layout() {
     return (
-        <Tabs screenOptions={{ headerShown: false }}>
+        <Tabs
+            screenOptions={{
+                headerShown: false,
+                tabBarStyle: {
+                    backgroundColor: InkwellColors.background,
+                    borderTopColor: InkwellColors.neutral200,
+                },
+                tabBarActiveTintColor: InkwellColors.onBackground,
+                tabBarInactiveTintColor: InkwellColors.onSurfaceVariant,
+            }}
+        >
             <Tabs.Screen
                 name="books"
                 options={{

@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { InkwellColors, Spacing } from '../../constants/theme';
@@ -8,9 +8,20 @@ export default function BooksScreen() {
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
                 <View style={{ width: 40 }} />
+                <Image
+                    source={require('../../assets/images/inkwell/inkwell-logo-only.png')}
+                    style={styles.headerLogoLeft}
+                    resizeMode="contain"
+                />
                 <Text variant="titleLarge">Books</Text>
+                <Image
+                    source={require('../../assets/images/inkwell/inkwell-logo-only.png')}
+                    style={styles.headerLogoRight}
+                    resizeMode="contain"
+                />
                 <View style={{ width: 40 }} />
             </View>
+
         </SafeAreaView>
     );
 }
@@ -18,7 +29,7 @@ export default function BooksScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: InkwellColors.background,
+        backgroundColor: InkwellColors.surface,
     },
     header: {
         flexDirection: 'row',
@@ -27,5 +38,19 @@ const styles = StyleSheet.create({
         paddingLeft: Spacing.xs,
         paddingRight: Spacing.xs,
         paddingVertical: Spacing.md,
+    },
+    headerTitleWrap: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.sm,
+    },
+    headerLogoRight: {
+        width: 72,
+        height: 72,
+        transform: [{ scaleX: -1 }], // Flip the logo horizontally for the right side
+    },
+    headerLogoLeft: {
+        width: 72,
+        height: 72,
     },
 });

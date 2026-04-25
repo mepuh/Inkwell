@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router';
 import { FirebaseError } from 'firebase/app';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { Button, Text, TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -73,7 +73,11 @@ export default function RegisterScreen() {
                 keyboardShouldPersistTaps="handled"
                 bottomOffset={24}
             >
-            <Text variant='headlineLarge'>Inkwell</Text>
+            <Image
+                source={require('../../assets/images/inkwell/inkwell-logo-full.png')}
+                style={styles.logo}
+                resizeMode="contain"
+            />
             <Text variant='bodyLarge'>Create an account to get started!</Text>
             <TextInput
                 label="Email"
@@ -101,7 +105,7 @@ export default function RegisterScreen() {
                 style={styles.input}
             />
             {error ? <Text style={styles.errorText}>{error}</Text> : null}
-            <Button mode="contained" onPress={handleRegister}>
+            <Button mode="contained" style={styles.button} onPress={handleRegister}>
                 Register
             </Button>
             <Button mode='text' onPress={() => router.push('/(auth)/login')}>
@@ -115,15 +119,18 @@ export default function RegisterScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: InkwellColors.background,
+        backgroundColor: InkwellColors.surface,
     },
     content: {
         flexGrow: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
         padding: Spacing.xxl,
-        paddingTop: '20%',
         gap: Spacing.lg,
+    },
+    logo: {
+        width: 270,
+        height: 270,
     },
     input: {
         width: '100%',
@@ -131,4 +138,7 @@ const styles = StyleSheet.create({
     errorText: {
         color: InkwellColors.error,
     },
+    button: {
+        marginTop: Spacing.sm,
+    }
 });

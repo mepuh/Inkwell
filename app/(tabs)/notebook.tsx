@@ -1,6 +1,6 @@
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, Image, StyleSheet, View } from 'react-native';
 import { ActivityIndicator, Button, Card, Dialog, FAB, IconButton, Portal, Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BorderRadius, InkwellColors, Spacing } from '../../constants/theme';
@@ -63,7 +63,17 @@ export default function NotebookScreen() {
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
                 <View style={{ width: 40 }} />
+                <Image
+                    source={require('../../assets/images/inkwell/inkwell-logo-only.png')}
+                    style={styles.headerLogoLeft}
+                    resizeMode="contain"
+                />
                 <Text variant="titleLarge">Notebook</Text>
+                <Image
+                    source={require('../../assets/images/inkwell/inkwell-logo-only.png')}
+                    style={styles.headerLogoRight}
+                    resizeMode="contain"
+                />
                 <View style={{ width: 40 }} />
             </View>
 
@@ -134,7 +144,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingHorizontal: Spacing.lg,
-        backgroundColor: InkwellColors.background,
+        backgroundColor: InkwellColors.surface,
     },
     header: {
         flexDirection: 'row',
@@ -143,6 +153,15 @@ const styles = StyleSheet.create({
         paddingLeft: Spacing.xs,
         paddingRight: Spacing.xs,
         paddingVertical: Spacing.md,
+    },
+    headerLogoRight: {
+        width: 72,
+        height: 72,
+        transform: [{ scaleX: -1 }],
+    },
+    headerLogoLeft: {
+        width: 72,
+        height: 72,
     },
     loading: {
         flex: 1,
@@ -161,6 +180,7 @@ const styles = StyleSheet.create({
     card: {
         marginBottom: Spacing.md,
         borderRadius: BorderRadius.md,
+        backgroundColor: InkwellColors.background,
     },
     noteTitle: {
         marginBottom: Spacing.xs,

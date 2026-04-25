@@ -321,7 +321,7 @@ export default function QuotesScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: InkwellColors.background,
+        backgroundColor: InkwellColors.surface,
     },
     header: {
         flexDirection: 'row',
@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
         padding: Spacing.lg,
         gap: Spacing.lg,
         paddingBottom: Spacing.xxxl,
-        backgroundColor: InkwellColors.background,
+        backgroundColor: InkwellColors.surface,
     },
     introText: {
         opacity: 0.8,
@@ -358,13 +358,13 @@ const styles = StyleSheet.create({
     museCard: {
         borderLeftWidth: 4,
         borderLeftColor: InkwellColors.secondary,
-        backgroundColor: InkwellColors.surface,
+        backgroundColor: InkwellColors.background,
         borderRadius: BorderRadius.md,
     },
     filterCard: {
         borderLeftWidth: 4,
         borderLeftColor: InkwellColors.primary,
-        backgroundColor: InkwellColors.surface,
+        backgroundColor: InkwellColors.background,
         borderRadius: BorderRadius.md,
     },
     chipsContainer: {
@@ -423,7 +423,7 @@ const styles = StyleSheet.create({
     quoteCard: {
         marginTop: Spacing.md,
         marginBottom: Spacing.md,
-        backgroundColor: InkwellColors.surface,
+        backgroundColor: InkwellColors.background,
         borderRadius: BorderRadius.md,
     },
     authorText: {
@@ -442,7 +442,7 @@ const styles = StyleSheet.create({
         marginBottom: Spacing.md,
         borderLeftWidth: 4,
         borderLeftColor: InkwellColors.error,
-        backgroundColor: InkwellColors.surface,
+        backgroundColor: InkwellColors.background,
         borderRadius: BorderRadius.md,
     },
     emptyTitle: {

@@ -105,7 +105,7 @@ export default function NoteScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: InkwellColors.background,
+        backgroundColor: InkwellColors.surface,
     },
     header: {
         flexDirection: 'row',
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     scrollViewContent: {
         padding: Spacing.lg,
         paddingBottom: Spacing.xxxl,
-        backgroundColor: InkwellColors.background,
+        backgroundColor: InkwellColors.surface,
     },
     titleInput: {
         marginBottom: Spacing.md,
