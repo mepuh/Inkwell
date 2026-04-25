@@ -3,6 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { Button, Card, IconButton, Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import writingQuotesData from "../../assets/data/writingQuotes.json";
+import { BorderRadius, InkwellColors, Spacing } from "../../constants/theme";
 
 // Define the structure of a quote object as expected from the local JSON file
 type LocalQuote = {
@@ -21,18 +22,17 @@ export default function HomeScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
-
-            {/* Settings button in the top right corner */}
-            <IconButton
-                icon="cog"
-                size={24}
-                style={styles.settingButton}
-                onPress={() => router.push('/settings')}
-            />
+            <View style={styles.header}>
+                <View style={{ width: 40 }} />
+                <Text variant="titleLarge">Home</Text>
+                <IconButton
+                    icon="cog"
+                    size={24}
+                    onPress={() => router.push('/settings')}
+                />
+            </View>
 
             <View style={styles.content}>
-                <Text variant="headlineMedium">Home</Text>
-
                 <Card>
                     {/* Display a random writing-themed quote */}
                     <Card.Content>
@@ -44,7 +44,7 @@ export default function HomeScreen() {
 
                     {/* Button to navigate to the Quotes screen */}
                     <Card.Actions>
-                        <Button icon="format-quote-close" contentStyle={styles.button} onPress={() => router.push('/quotes')}>
+                        <Button icon="format-quote-close" onPress={() => router.push('/quotes')}>
                             Explore Quotes
                         </Button>
                     </Card.Actions>
@@ -57,19 +57,29 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: InkwellColors.background,
     },
-    settingButton: {
-        alignSelf: 'flex-end',
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingLeft: Spacing.xs,
+        paddingRight: Spacing.xs,   
+        paddingVertical: Spacing.xs,
     },
     content: {
-        paddingHorizontal: 16,
-        gap: 16,
+        flex: 1,
+        paddingHorizontal: Spacing.lg,
+        paddingVertical: Spacing.lg,
+        gap: Spacing.lg,
+    },
+    card: {
+        backgroundColor: InkwellColors.surface,
+        borderRadius: BorderRadius.md,
     },
     author: {
-        marginTop: 8,
+        marginTop: Spacing.md,
         fontStyle: 'italic',
-    },
-    button: {
-
+        color: InkwellColors.onSurface,
     },
 });

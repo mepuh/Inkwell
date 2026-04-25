@@ -1,13 +1,15 @@
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { Alert, FlatList, StyleSheet } from 'react-native';
-import { ActivityIndicator, Card, FAB, IconButton, Text } from 'react-native-paper';
+import { FlatList, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Button, Card, Dialog, FAB, IconButton, Portal, Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BorderRadius, InkwellColors, Spacing } from '../../constants/theme';
 import { deleteNote, getNotes, Note } from '../../services/databaseService';
 
 export default function NotebookScreen() {
     const [notes, setNotes] = useState<Note[]>([]);
     const [loading, setLoading] = useState(true);
+    const [noteIdToDelete, setNoteIdToDelete] = useState<string | null>(null);
     const router = useRouter();
 
     // Function to fetch notes from the database and sort them by updatedAt in descending order (most recent first)
@@ -40,17 +42,31 @@ export default function NotebookScreen() {
         }
     };
 
-    // Confirmation dialog before deleting a note to prevent accidental deletions
+    // Function to confirm note deletion by setting the note ID to be deleted, which will trigger the display of a confirmation dialog
     const confirmDelete = (id: string) => {
-        Alert.alert('Delete note?', 'This action cannot be undone.', [
-            { text: 'Cancel' },
-            { text: 'Delete', onPress: () => handleDelete(id) },
-        ]);
+        setNoteIdToDelete(id);
+    };
+
+    // Function to close the delete confirmation dialog and reset the to-be-deleted ID
+    const closeDeleteDialog = () => {
+        setNoteIdToDelete(null);
+    };
+
+    // Handler function that is called when the user confirms deletion in the dialog
+    const handleDeleteConfirmed = async () => {
+        if (!noteIdToDelete) return;
+        await handleDelete(noteIdToDelete);
+        closeDeleteDialog();
     };
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text variant="headlineMedium" style={styles.title}>Notebook</Text>
+            <View style={styles.header}>
+                <View style={{ width: 40 }} />
+                <Text variant="titleLarge">Notebook</Text>
+                <View style={{ width: 40 }} />
+            </View>
+
             {loading ? (
                 <ActivityIndicator size="large" style={styles.loading} />
             ) : notes.length === 0 ? (
@@ -59,7 +75,7 @@ export default function NotebookScreen() {
                 </Text>
             ) : (
                 // Render the list of notes using FlatList
-                <FlatList
+                <FlatList style={styles.list}
                     data={notes}
                     keyExtractor={item => item.id!}
                     renderItem={({ item }) => (
@@ -94,6 +110,22 @@ export default function NotebookScreen() {
                 style={styles.fab}
                 onPress={() => router.push('/note')}
             />
+
+            {/* Dialog to confirm note deletion */}
+            <Portal>
+                <Dialog visible={!!noteIdToDelete} onDismiss={closeDeleteDialog}>
+                    <Dialog.Title>Delete note?</Dialog.Title>
+                    <Dialog.Content>
+                        <Text variant="bodyMedium">This action cannot be undone.</Text>
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                        <Button onPress={closeDeleteDialog}>Cancel</Button>
+                        <Button textColor={InkwellColors.error} onPress={handleDeleteConfirmed}>
+                            Delete
+                        </Button>
+                    </Dialog.Actions>
+                </Dialog>
+            </Portal>
         </SafeAreaView>
     );
 }
@@ -101,10 +133,16 @@ export default function NotebookScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 16,
+        paddingHorizontal: Spacing.lg,
+        backgroundColor: InkwellColors.background,
     },
-    title: {
-        marginBottom: 16,
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingLeft: Spacing.xs,
+        paddingRight: Spacing.xs,
+        paddingVertical: Spacing.md,
     },
     loading: {
         flex: 1,
@@ -115,27 +153,34 @@ const styles = StyleSheet.create({
         flex: 1,
         textAlign: 'center',
         textAlignVertical: 'center',
+        color: InkwellColors.onBackground,
+    },
+    list: {
+        padding: Spacing.xs,
     },
     card: {
-        marginBottom: 12,
+        marginBottom: Spacing.md,
+        borderRadius: BorderRadius.md,
     },
     noteTitle: {
-        marginBottom: 4,
-        fontWeight: '500',
+        marginBottom: Spacing.xs,
+        color: InkwellColors.onSurface,
     },
     noteDate: {
-        marginBottom: 10,
-        opacity: 0.8,
+        marginBottom: Spacing.lg,
+        opacity: 0.7,
+        color: InkwellColors.onSurfaceVariant,
     },
     noteContent: {
         lineHeight: 20,
+        color: InkwellColors.onSurface,
     },
     cardActions: {
         justifyContent: 'flex-end',
     },
     fab: {
         position: 'absolute',
-        right: 16,
-        bottom: 16,
+        right: Spacing.lg,
+        bottom: Spacing.lg,
     },
 });

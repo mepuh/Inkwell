@@ -1,10 +1,12 @@
 import { useRouter } from 'expo-router';
+import { FirebaseError } from 'firebase/app';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { Button, Text, TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { InkwellColors, Spacing } from '../../constants/theme';
 import { auth } from '../../services/firebaseConfig';
 
 export default function RegisterScreen() {
@@ -31,10 +33,36 @@ export default function RegisterScreen() {
             setError("Password must be at least 8 characters.");
             return;
         }
+
+        setError('');
+
         try {
             await createUserWithEmailAndPassword(auth, email, password);
-        } catch {
-            setError("Failed to create account. Please check your details and try again.");
+        } catch (err: unknown) {
+            // Handle specific Firebase authentication errors to provide more user-friendly feedback
+            if (err instanceof FirebaseError) {
+                switch (err.code) {
+                    case 'auth/email-already-in-use':
+                        setError('This email is already in use. Try signing in instead.');
+                        return;
+                    case 'auth/invalid-email':
+                        setError('Please enter a valid email address.');
+                        return;
+                    case 'auth/weak-password':
+                        setError('Password is too weak. Please use at least 8 characters.');
+                        return;
+                    case 'auth/network-request-failed':
+                        setError('Network error. Check your connection and try again.');
+                        return;
+                    case 'auth/too-many-requests':
+                        setError('Too many attempts. Please wait a moment and try again.');
+                        return;
+                    default:
+                        break;
+                }
+            }
+
+            setError('Failed to create account. Please try again.');
         }
     };
 
@@ -53,6 +81,7 @@ export default function RegisterScreen() {
                 onChangeText={setEmail}
                 keyboardType="email-address"
                 autoCapitalize="none"
+                mode="outlined"
                 style={styles.input}
             />
             <TextInput
@@ -60,6 +89,7 @@ export default function RegisterScreen() {
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry
+                mode="outlined"
                 style={styles.input}
             />
             <TextInput
@@ -67,6 +97,7 @@ export default function RegisterScreen() {
                 value={confirmPassword}
                 onChangeText={setConfirmPassword}
                 secureTextEntry
+                mode="outlined"
                 style={styles.input}
             />
             {error ? <Text style={styles.errorText}>{error}</Text> : null}
@@ -84,19 +115,20 @@ export default function RegisterScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: InkwellColors.background,
     },
     content: {
         flexGrow: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
-        padding: 24,
+        padding: Spacing.xxl,
         paddingTop: '20%',
-        gap: 16,
+        gap: Spacing.lg,
     },
     input: {
         width: '100%',
     },
     errorText: {
-        color: 'red',
+        color: InkwellColors.error,
     },
 });

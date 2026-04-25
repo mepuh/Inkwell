@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { Button, Card, SegmentedButtons, Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BorderRadius, InkwellColors, Spacing } from '../../constants/theme';
 import {
     CharacterBasic,
     CharacterDetailed,
@@ -240,8 +241,13 @@ export default function GeneratorScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
+            <View style={styles.header}>
+                <View style={{ width: 40 }} />
+                <Text variant="titleLarge">Generator</Text>
+                <View style={{ width: 40 }} />
+            </View>
+
             <ScrollView contentContainerStyle={styles.content}>
-                <Text variant="headlineMedium">Generator</Text>
 
                 {/* Character Generator */}
                 <Card>
@@ -450,40 +456,50 @@ export default function GeneratorScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: InkwellColors.background,
+    },
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingLeft: Spacing.xs,
+        paddingRight: Spacing.xs,
+        paddingVertical: Spacing.md,
     },
     content: {
-        padding: 16,
-        gap: 16,
+        padding: Spacing.lg,
+        gap: Spacing.lg,
+        backgroundColor: InkwellColors.background,
     },
     section: {
-        gap: 12,
+        gap: Spacing.md,
     },
     introText: {
         opacity: 0.8,
     },
     resultBlock: {
-        gap: 12,
-        marginTop: 8,
+        gap: Spacing.md,
+        marginTop: Spacing.sm,
     },
     groupCard: {
-        backgroundColor: '#F5F7FA',
-        borderRadius: 10,
-        padding: 12,
-        gap: 10,
+        backgroundColor: InkwellColors.background,
+        borderRadius: BorderRadius.md,
+        padding: Spacing.md,
+        gap: Spacing.md,
     },
     fieldRow: {
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'space-between',
-        gap: 10,
+        gap: Spacing.md,
     },
     fieldTextBlock: {
         flex: 1,
-        gap: 2,
+        gap: Spacing.xs,
     },
     buttonRow: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        gap: 8,
+        gap: Spacing.sm,
     },
 });

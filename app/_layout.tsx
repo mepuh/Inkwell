@@ -1,7 +1,9 @@
 import { Stack, useRouter, useSegments } from "expo-router";
 import { useEffect } from "react";
 import { KeyboardProvider } from "react-native-keyboard-controller";
+import { Provider as PaperProvider } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { inkwellTheme } from "../constants/theme";
 import { AuthProvider, useAuth } from "../context/AuthContext";
 
 // This is the root layout for the app. It wraps all the screens and handles authentication logic.
@@ -31,11 +33,13 @@ function RootNavigator() {
 export default function RootLayout() {
   return (
     <SafeAreaProvider>
-      <KeyboardProvider>
-        <AuthProvider>
-          <RootNavigator />
-        </AuthProvider>
-      </KeyboardProvider>
+      <PaperProvider theme={inkwellTheme}>
+        <KeyboardProvider>
+          <AuthProvider>
+            <RootNavigator />
+          </AuthProvider>
+        </KeyboardProvider>
+      </PaperProvider>
     </SafeAreaProvider>
   );
 }

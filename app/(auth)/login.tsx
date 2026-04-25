@@ -5,6 +5,7 @@ import { StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { Button, Text, TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { InkwellColors, Spacing } from '../../constants/theme';
 import { auth } from '../../services/firebaseConfig';
 
 
@@ -37,6 +38,7 @@ export default function LoginScreen() {
                 onChangeText={setEmail}
                 keyboardType="email-address"
                 autoCapitalize="none"
+                mode="outlined"
                 style={styles.input}
             />
             <TextInput
@@ -44,6 +46,7 @@ export default function LoginScreen() {
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry
+                mode="outlined"
                 style={styles.input}
             />
             {error ? <Text style={styles.errorText}>{error}</Text> : null}
@@ -61,19 +64,20 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: InkwellColors.background,
     },
     content: {
         flexGrow: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
-        padding: 24,
+        padding: Spacing.xxl,
         paddingTop: '20%',
-        gap: 16,
+        gap: Spacing.lg,
     },
     input: {
         width: '100%',
     },
     errorText: {
-        color: 'red',
+        color: InkwellColors.error,
     },
 }); 

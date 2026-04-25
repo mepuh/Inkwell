@@ -2,8 +2,9 @@ import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
-import { ActivityIndicator, Button, Card, Chip, Divider, Text, TextInput } from 'react-native-paper';
+import { ActivityIndicator, Button, Card, Chip, Divider, IconButton, Text, TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BorderRadius, InkwellColors, Spacing } from '../constants/theme';
 import { fetchSingleQuote, Quote, quoteCategories, QuoteCategory } from '../services/quotesService';
 
 // A curated list of categories to use for the "Let the Muse pick!" feature, ensuring a good variety of quotes while avoiding some of the more niche or less universally appealing categories (e.g. "death", "fear").
@@ -129,24 +130,19 @@ export default function QuotesScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
+            <View style={styles.header}>
+                <IconButton icon="arrow-left" onPress={() => router.back()} />
+                <Text variant="titleLarge">Quotes</Text>
+                <View style={{ width: 40 }} />
+            </View>
             <KeyboardAwareScrollView
                 contentContainerStyle={styles.content}
                 keyboardShouldPersistTaps="handled"
                 bottomOffset={24}
             >
-
-                {/* Header card with introduction and back button */}
-                <Card>
-                    <Card.Content>
-                        <Text variant="headlineMedium">Quotes</Text>
-                        <Text variant="bodyMedium" style={styles.cardText}>
-                            Find a line of inspiration to nudge your story forward. Use a quick spark for a surprise, or narrow the search to a mood, author, or category mix that fits what you are writing.
-                        </Text>
-                    </Card.Content>
-                    <Card.Actions>
-                        <Button onPress={() => router.push('/(tabs)/home')} mode="text">Back to Home</Button>
-                    </Card.Actions>
-                </Card>
+                <Text variant="bodyMedium" style={styles.introText}>
+                    Find a line of inspiration to nudge your story forward. Use a quick spark for a surprise, or narrow the search to a mood, author, or category mix that fits what you are writing.
+                </Text>
 
                 {/* Section for the "Let the Muse pick!" feature, allowing users to get a random quote with one click */}
                 <View style={styles.sectionWrapper}>
@@ -325,41 +321,59 @@ export default function QuotesScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: InkwellColors.background,
+    },
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingLeft: Spacing.xs,
+        paddingRight: Spacing.xs,
+        paddingVertical: Spacing.xs,
     },
     content: {
-        padding: 16,
-        gap: 16,
-        paddingBottom: 32,
+        padding: Spacing.lg,
+        gap: Spacing.lg,
+        paddingBottom: Spacing.xxxl,
+        backgroundColor: InkwellColors.background,
+    },
+    introText: {
+        opacity: 0.8,
+        marginBottom: Spacing.md,
     },
     cardText: {
-        marginTop: 6,
+        marginTop: Spacing.xs,
         opacity: 0.8,
     },
     sectionWrapper: {
-        gap: 8,
+        gap: Spacing.sm,
     },
     sectionTitle: {
-        marginTop: 10,
+        marginTop: Spacing.md,
     },
     sectionHelp: {
-        marginBottom: 10,
+        marginBottom: Spacing.md,
         opacity: 0.8,
     },
     museCard: {
         borderLeftWidth: 4,
-        borderLeftColor: '#7C6BFF',
+        borderLeftColor: InkwellColors.secondary,
+        backgroundColor: InkwellColors.surface,
+        borderRadius: BorderRadius.md,
     },
     filterCard: {
         borderLeftWidth: 4,
-        borderLeftColor: '#2E8B57',
+        borderLeftColor: InkwellColors.primary,
+        backgroundColor: InkwellColors.surface,
+        borderRadius: BorderRadius.md,
     },
     chipsContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        gap: 10,
+        gap: Spacing.sm,
     },
     chip: {
-        marginBottom: 2,
+        marginBottom: Spacing.xs,
     },
     includeChip: {
         borderColor: '#B7E4C7',
@@ -373,7 +387,7 @@ const styles = StyleSheet.create({
         color: '#2E8B57',
     },
     divider: {
-        marginVertical: 20,
+        marginVertical: Spacing.xxxl,
     },
     excludeChip: {
         borderColor: '#F4B4B4',
@@ -381,59 +395,63 @@ const styles = StyleSheet.create({
     },
     excludeChipSelected: {
         backgroundColor: '#FFE3E3',
-        borderColor: '#C0392B',
+        borderColor: InkwellColors.error,
     },
     excludeTitle: {
-        color: '#C0392B',
+        color: InkwellColors.error,
     },
     authorTitle: {
-        color: '#333',
+        color: InkwellColors.onBackground,
     },
     authorInput: {
-        marginBottom: 12,
+        marginBottom: Spacing.md,
     },
     filterActions: {
         flexWrap: 'wrap',
         justifyContent: 'flex-start',
-        marginBottom: 12,
+        marginBottom: Spacing.md,
     },
     filterHint: {
-        marginBottom: 16,
-        marginHorizontal: 16,
+        marginBottom: Spacing.lg,
+        marginHorizontal: Spacing.lg,
         opacity: 0.8,
     },
     loading: {
-        marginTop: 24,
-        marginBottom: 8,
+        marginTop: Spacing.xxl,
+        marginBottom: Spacing.sm,
     },
     quoteCard: {
-        marginTop: 12,
-        marginBottom: 10,
+        marginTop: Spacing.md,
+        marginBottom: Spacing.md,
+        backgroundColor: InkwellColors.surface,
+        borderRadius: BorderRadius.md,
     },
     authorText: {
-        marginTop: 8,
-        marginBottom: 4,
+        marginTop: Spacing.md,
+        marginBottom: Spacing.xs,
         fontStyle: 'italic',
     },
     workText: {
-        marginTop: 6,
+        marginTop: Spacing.xs,
     },
     categoriesText: {
-        marginTop: 6,
+        marginTop: Spacing.xs,
     },
     emptyCard: {
-        marginTop: 12,
-        marginBottom: 10,
+        marginTop: Spacing.md,
+        marginBottom: Spacing.md,
         borderLeftWidth: 4,
-        borderLeftColor: '#C0392B',
+        borderLeftColor: InkwellColors.error,
+        backgroundColor: InkwellColors.surface,
+        borderRadius: BorderRadius.md,
     },
     emptyTitle: {
-        marginBottom: 6,
+        marginBottom: Spacing.xs,
     },
     emptyText: {
         opacity: 0.8,
     },
     errorText: {
-        color: '#B00020',
+        color: InkwellColors.error,
     },
 });

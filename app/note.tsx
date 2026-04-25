@@ -1,8 +1,10 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { Button, IconButton, Text, TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { InkwellColors, Spacing } from '../constants/theme';
 import { addNote, getNoteById, updateNote } from '../services/databaseService';
 
 export default function NoteScreen() {
@@ -75,7 +77,11 @@ export default function NoteScreen() {
                     Save
                 </Button>
             </View>
-            <ScrollView style={styles.scrollView}>
+            <KeyboardAwareScrollView
+                contentContainerStyle={styles.scrollViewContent}
+                keyboardShouldPersistTaps="handled"
+                bottomOffset={24}
+            >
                 <TextInput
                     label="Title"
                     value={title}
@@ -91,7 +97,7 @@ export default function NoteScreen() {
                     mode="outlined"
                     style={styles.contentInput}
                 />
-            </ScrollView>
+            </KeyboardAwareScrollView>
         </SafeAreaView>
     );
 }
@@ -99,19 +105,23 @@ export default function NoteScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: InkwellColors.background,
     },
     header: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingRight: 8,
+        paddingRight: Spacing.sm,
+        paddingLeft: Spacing.xs,
+        paddingVertical: Spacing.xs,
     },
-    scrollView: {
-        flex: 1,
-        padding: 16,
+    scrollViewContent: {
+        padding: Spacing.lg,
+        paddingBottom: Spacing.xxxl,
+        backgroundColor: InkwellColors.background,
     },
     titleInput: {
-        marginBottom: 12,
+        marginBottom: Spacing.md,
     },
     contentInput: {
         minHeight: 300,
