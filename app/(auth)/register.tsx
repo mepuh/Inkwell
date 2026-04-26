@@ -13,6 +13,8 @@ export default function RegisterScreen() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [error, setError] = useState('');
     const router = useRouter();
 
@@ -39,7 +41,7 @@ export default function RegisterScreen() {
         try {
             await createUserWithEmailAndPassword(auth, email, password);
         } catch (err: unknown) {
-            // Handle specific Firebase authentication errors to provide more user-friendly feedback
+            // Handle specific Firebase authentication errors to provide more user-friendly feedback (client-side validation should catch most of these, but this is a fallback for any issues that arise during the registration process)
             if (err instanceof FirebaseError) {
                 switch (err.code) {
                     case 'auth/email-already-in-use':
@@ -92,7 +94,15 @@ export default function RegisterScreen() {
                 label="Password"
                 value={password}
                 onChangeText={setPassword}
-                secureTextEntry
+                secureTextEntry={!showPassword}
+                right={
+                    <TextInput.Icon
+                        icon={showPassword ? 'eye' : 'eye-off'}
+                        onPress={() => setShowPassword((prev) => !prev)}
+                        forceTextInputFocus={false}
+                        
+                    />
+                }
                 mode="outlined"
                 style={styles.input}
             />
@@ -100,7 +110,14 @@ export default function RegisterScreen() {
                 label="Confirm Password"
                 value={confirmPassword}
                 onChangeText={setConfirmPassword}
-                secureTextEntry
+                secureTextEntry={!showConfirmPassword}
+                right={
+                    <TextInput.Icon
+                        icon={showConfirmPassword ? 'eye' : 'eye-off'}
+                        onPress={() => setShowConfirmPassword((prev) => !prev)}
+                        forceTextInputFocus={false}
+                    />
+                }
                 mode="outlined"
                 style={styles.input}
             />

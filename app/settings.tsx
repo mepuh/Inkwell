@@ -1,4 +1,5 @@
 import { useRouter } from 'expo-router';
+import { FirebaseError } from 'firebase/app';
 import { EmailAuthProvider, reauthenticateWithCredential, signOut, updatePassword } from 'firebase/auth';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -11,6 +12,8 @@ import { auth } from '../services/firebaseConfig';
 export default function SettingsScreen() {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
+    const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+    const [showNewPassword, setShowNewPassword] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [signOutDialogVisible, setSignOutDialogVisible] = useState(false);
@@ -21,7 +24,23 @@ export default function SettingsScreen() {
         try {
             await signOut(auth);
             setSignOutDialogVisible(false);
-        } catch {
+        } catch (err: unknown) {
+            // Handle specific Firebase authentication errors to provide more user-friendly feedback
+            if (err instanceof FirebaseError) {
+                switch (err.code) {
+                    case 'auth/network-request-failed':
+                        setError('Network error. Check your connection and try again.');
+                        setSignOutDialogVisible(false);
+                        return;
+                    case 'auth/too-many-requests':
+                        setError('Too many attempts. Please wait a moment and try again.');
+                        setSignOutDialogVisible(false);
+                        return;
+                    default:
+                        break;
+                }
+            }
+
             setError('Failed to sign out. Please try again.');
             setSignOutDialogVisible(false);
         }
@@ -39,6 +58,7 @@ export default function SettingsScreen() {
     const handleChangePassword = async () => {
         // If changing password right after successful password change, clear success message when user presses the button again
         setSuccess('');
+        setError('');
 
         if (!currentPassword || !newPassword) {
             setError('Please fill in all fields.');
@@ -62,8 +82,32 @@ export default function SettingsScreen() {
             setCurrentPassword('');
             setNewPassword('');
             setError('');
-        } catch {
-            setError('Failed to change password. Make sure your current password is correct.');
+        } catch (err: unknown) {
+            // Handle specific Firebase authentication errors to provide more user-friendly feedback (client-side validation should catch most of these, but this is a fallback for any issues that arise during the password change process)
+            if (err instanceof FirebaseError) {
+                switch (err.code) {
+                    case 'auth/wrong-password':
+                    case 'auth/invalid-credential':
+                        setError('Current password is incorrect. Please try again.');
+                        return;
+                    case 'auth/requires-recent-login':
+                        setError('Please sign in again before changing your password.');
+                        return;
+                    case 'auth/weak-password':
+                        setError('New password is too weak. Please use at least 8 characters.');
+                        return;
+                    case 'auth/network-request-failed':
+                        setError('Network error. Check your connection and try again.');
+                        return;
+                    case 'auth/too-many-requests':
+                        setError('Too many attempts. Please wait a moment and try again.');
+                        return;
+                    default:
+                        break;
+                }
+            }
+
+            setError('Failed to change password. Please try again.');
         }
     };
 
@@ -90,7 +134,14 @@ export default function SettingsScreen() {
                     label="Current Password"
                     value={currentPassword}
                     onChangeText={setCurrentPassword}
-                    secureTextEntry
+                    secureTextEntry={!showCurrentPassword}
+                    right={
+                        <TextInput.Icon
+                            icon={showCurrentPassword ? 'eye' : 'eye-off'}
+                            onPress={() => setShowCurrentPassword((prev) => !prev)}
+                            forceTextInputFocus={false}
+                        />
+                    }
                     mode="outlined"
                     style={styles.input}
                 />
@@ -98,7 +149,14 @@ export default function SettingsScreen() {
                     label="New Password"
                     value={newPassword}
                     onChangeText={setNewPassword}
-                    secureTextEntry
+                    secureTextEntry={!showNewPassword}
+                    right={
+                        <TextInput.Icon
+                            icon={showNewPassword ? 'eye' : 'eye-off'}
+                            onPress={() => setShowNewPassword((prev) => !prev)}
+                            forceTextInputFocus={false}
+                        />
+                    }
                     mode="outlined"
                     style={styles.input}
                 />
