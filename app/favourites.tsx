@@ -1,7 +1,7 @@
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { FlatList, Image, StyleSheet, View } from 'react-native';
-import { ActivityIndicator, Card, IconButton, Text } from 'react-native-paper';
+import { ActivityIndicator, Card, IconButton, Searchbar, Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BorderRadius, InkwellColors, Spacing } from '../constants/theme';
 import { FavouriteBook, getFavouriteBooks, removeFavouriteBook } from '../services/databaseService';
@@ -10,6 +10,10 @@ export default function FavouritesScreen() {
     const [books, setBooks] = useState<FavouriteBook[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
+    const [showControls, setShowControls] = useState(false);
+    const [sortBy, setSortBy] = useState<'title' | 'date'>('title');
+    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
     const router = useRouter();
 
     // Fetch favourite books whenever the screen comes into focus
@@ -46,14 +50,104 @@ export default function FavouritesScreen() {
         }
     };
 
+    // Filter and sort favourite books using the search query and sort options selected by the user
+    const filteredBooks = books
+        .filter(book => (book.title || '').toLowerCase().includes(searchQuery.toLowerCase()))
+        .sort((a, b) => {
+            if (sortBy === 'date') {
+                return sortOrder === 'asc' ? a.savedAt - b.savedAt : b.savedAt - a.savedAt;
+            }
+
+            const titleA = (a.title || '').toLowerCase();
+            const titleB = (b.title || '').toLowerCase();
+            const comparison = titleA.localeCompare(titleB);
+            return sortOrder === 'asc' ? comparison : -comparison;
+        });
+
     return (
         <SafeAreaView style={styles.container}>
-            {/* Header with back button and title */}
+    
             <View style={styles.header}>
-                <IconButton icon="arrow-left" onPress={() => router.back()} />
-                <Text variant="titleLarge">Favourites</Text>
-                <View style={{ width: 40 }} />
+                <View style={styles.headerSide}>
+                    <IconButton icon="arrow-left" onPress={() => router.back()} />
+                </View>
+                <Text variant="titleLarge" style={styles.headerTitle}>Favourites</Text>
+                <View style={styles.headerSide}>
+                    {books.length > 0 && (
+                        <IconButton
+                            icon={showControls ? 'close' : 'tune'}
+                            onPress={() => setShowControls(prev => !prev)}
+                        />
+                    )}
+                </View>
             </View>
+
+            {/* Show search and sort controls only when there are books to display and the user has toggled them open */}
+            {!loading && books.length > 0 && showControls && (
+                <View style={styles.controlsPanel}>
+                    <Searchbar
+                        placeholder="Search favourite books..."
+                        value={searchQuery}
+                        onChangeText={setSearchQuery}
+                        style={styles.searchbar}
+                    />
+
+                    <View style={styles.sortRow}>
+                        <IconButton
+                            icon="sort-alphabetical-ascending"
+                            size={20}
+                            iconColor={sortBy === 'title' && sortOrder === 'asc' ? InkwellColors.primary : InkwellColors.onSurfaceVariant}
+                            style={[
+                                styles.sortButton,
+                                sortBy === 'title' && sortOrder === 'asc' && styles.sortButtonActive,
+                            ]}
+                            onPress={() => {
+                                setSortBy('title');
+                                setSortOrder('asc');
+                            }}
+                        />
+                        <IconButton
+                            icon="sort-alphabetical-descending"
+                            size={20}
+                            iconColor={sortBy === 'title' && sortOrder === 'desc' ? InkwellColors.primary : InkwellColors.onSurfaceVariant}
+                            style={[
+                                styles.sortButton,
+                                sortBy === 'title' && sortOrder === 'desc' && styles.sortButtonActive,
+                            ]}
+                            onPress={() => {
+                                setSortBy('title');
+                                setSortOrder('desc');
+                            }}
+                        />
+                        <IconButton
+                            icon="sort-calendar-ascending"
+                            size={20}
+                            iconColor={sortBy === 'date' && sortOrder === 'asc' ? InkwellColors.primary : InkwellColors.onSurfaceVariant}
+                            style={[
+                                styles.sortButton,
+                                sortBy === 'date' && sortOrder === 'asc' && styles.sortButtonActive,
+                            ]}
+                            onPress={() => {
+                                setSortBy('date');
+                                setSortOrder('asc');
+                            }}
+                        />
+                        <IconButton
+                            icon="sort-calendar-descending"
+                            size={20}
+                            iconColor={sortBy === 'date' && sortOrder === 'desc' ? InkwellColors.primary : InkwellColors.onSurfaceVariant}
+                            style={[
+                                styles.sortButton,
+                                sortBy === 'date' && sortOrder === 'desc' && styles.sortButtonActive,
+                            ]}
+                            onPress={() => {
+                                setSortBy('date');
+                                setSortOrder('desc');
+                            }}
+                        />
+                    </View>
+                </View>
+            )}
 
             {loading && <ActivityIndicator style={styles.loading} />}
             {error ? <Text style={styles.error}>{error}</Text> : null}
@@ -70,7 +164,7 @@ export default function FavouritesScreen() {
 
             {/* List of favourite books */}
             <FlatList
-                data={books}
+                data={filteredBooks}
                 keyExtractor={item => item.id}
                 contentContainerStyle={styles.resultsContent}
                 renderItem={({ item }) => (
@@ -94,6 +188,13 @@ export default function FavouritesScreen() {
                                     </Text>
                                     <Text variant="bodySmall" numberOfLines={2} style={styles.bookAuthors}>
                                         {item.authors.join(', ')}
+                                    </Text>
+                                    <Text variant="labelSmall" style={styles.savedDate}>
+                                        Favourite since {new Date(item.savedAt).toLocaleDateString('en-GB', {
+                                            day: 'numeric',
+                                            month: 'long',
+                                            year: 'numeric',
+                                        })}
                                     </Text>
 
                                     <View style={styles.actionRow}>
@@ -126,7 +227,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: InkwellColors.surface,
-        padding: Spacing.md,
+        paddingHorizontal: Spacing.md,
     },
     header: {
         flexDirection: 'row',
@@ -135,6 +236,15 @@ const styles = StyleSheet.create({
         paddingLeft: Spacing.xs,
         paddingRight: Spacing.xs,
         paddingVertical: Spacing.md,
+    },
+    headerSide: {
+        width: 48,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    headerTitle: {
+        flex: 1,
+        textAlign: 'center',
     },
     loading: {
         marginTop: Spacing.md,
@@ -203,6 +313,11 @@ const styles = StyleSheet.create({
         opacity: 0.7,
         marginBottom: Spacing.sm,
     },
+    savedDate: {
+        opacity: 0.65,
+        marginBottom: Spacing.sm,
+        color: InkwellColors.onSurfaceVariant,
+    },
     actionRow: {
         flexDirection: 'row',
         gap: Spacing.sm,
@@ -210,5 +325,31 @@ const styles = StyleSheet.create({
     },
     actionButton: {
         margin: 0,
+    },
+    controlsPanel: {
+        marginBottom: Spacing.xs,
+    },
+    searchbar: {
+        marginTop: Spacing.sm,
+        marginBottom: Spacing.sm,
+        backgroundColor: InkwellColors.background,
+        borderWidth: 1.5,
+        borderColor: InkwellColors.surfaceVariant,
+    },
+    sortRow: {
+        flexDirection: 'row',
+        alignSelf: 'center',
+        gap: Spacing.sm,
+        marginBottom: Spacing.xs,
+    },
+    sortButton: {
+        margin: 0,
+        borderRadius: BorderRadius.md,
+        borderWidth: 1,
+        borderColor: 'transparent',
+    },
+    sortButtonActive: {
+        borderColor: InkwellColors.primary,
+        backgroundColor: InkwellColors.neutral200,
     },
 });
