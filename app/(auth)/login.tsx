@@ -15,9 +15,11 @@ export default function LoginScreen() {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
 
     const handleLogin = async () => {
+        setLoading(true);
         try {
             await signInWithEmailAndPassword(auth, email, password);
         } catch (err: unknown) {
@@ -47,6 +49,8 @@ export default function LoginScreen() {
             }
 
             setError("Invalid email or password. Please try again.");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -76,6 +80,7 @@ export default function LoginScreen() {
                     label="Password"
                     value={password}
                     onChangeText={setPassword}
+                    onSubmitEditing={handleLogin}
                     secureTextEntry={!showPassword}
                     right={
                         <TextInput.Icon
@@ -88,7 +93,7 @@ export default function LoginScreen() {
                     style={styles.input}
                 />
                 {error ? <Text style={styles.errorText}>{error}</Text> : null}
-                <Button mode="contained" style={styles.button} onPress={handleLogin}>
+                <Button mode="contained" style={styles.button} onPress={handleLogin} loading={loading} disabled={loading}>
                     Sign in
                 </Button>
                 <Button mode='text' onPress={() => router.push('/(auth)/register')}>

@@ -16,6 +16,7 @@ export default function RegisterScreen() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
 
     const handleRegister = async () => {
@@ -37,6 +38,7 @@ export default function RegisterScreen() {
         }
 
         setError('');
+        setLoading(true);
 
         try {
             await createUserWithEmailAndPassword(auth, email, password);
@@ -65,6 +67,8 @@ export default function RegisterScreen() {
             }
 
             setError('Failed to create account. Please try again.');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -122,7 +126,7 @@ export default function RegisterScreen() {
                 style={styles.input}
             />
             {error ? <Text style={styles.errorText}>{error}</Text> : null}
-            <Button mode="contained" style={styles.button} onPress={handleRegister}>
+            <Button mode="contained" style={styles.button} onPress={handleRegister} loading={loading} disabled={loading}>
                 Register
             </Button>
             <Button mode='text' onPress={() => router.push('/(auth)/login')}>

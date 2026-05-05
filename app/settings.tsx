@@ -17,10 +17,13 @@ export default function SettingsScreen() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [signOutDialogVisible, setSignOutDialogVisible] = useState(false);
+    const [passwordLoading, setPasswordLoading] = useState(false);
+    const [signOutLoading, setSignOutLoading] = useState(false);
     const router = useRouter();
 
     // Sign out the user
     const handleSignOut = async () => {
+        setSignOutLoading(true);
         try {
             await signOut(auth);
             setSignOutDialogVisible(false);
@@ -43,6 +46,8 @@ export default function SettingsScreen() {
 
             setError('Failed to sign out. Please try again.');
             setSignOutDialogVisible(false);
+        } finally {
+            setSignOutLoading(false);
         }
     };
 
@@ -68,6 +73,7 @@ export default function SettingsScreen() {
             setError('New password must be at least 8 characters.');
             return;
         }
+        setPasswordLoading(true);
         try {
             const user = auth.currentUser;
             if (!user || !user.email) return;
@@ -108,6 +114,8 @@ export default function SettingsScreen() {
             }
 
             setError('Failed to change password. Please try again.');
+        } finally {
+            setPasswordLoading(false);
         }
     };
 
@@ -162,7 +170,7 @@ export default function SettingsScreen() {
                 />
                 {error ? <Text style={styles.error}>{error}</Text> : null}
                 {success ? <Text style={styles.success}>{success}</Text> : null}
-                <Button mode="contained" onPress={handleChangePassword}>
+                <Button mode="contained" onPress={handleChangePassword} loading={passwordLoading} disabled={passwordLoading}>
                     Update Password
                 </Button>
 
@@ -186,8 +194,8 @@ export default function SettingsScreen() {
                             <Text>Are you sure you want to sign out?</Text>
                         </Dialog.Content>
                         <Dialog.Actions>
-                            <Button onPress={hideSignOutDialog}>Cancel</Button>
-                            <Button textColor={InkwellColors.error} onPress={handleSignOut}>Sign Out</Button>
+                            <Button onPress={hideSignOutDialog} disabled={signOutLoading}>Cancel</Button>
+                            <Button textColor={InkwellColors.error} onPress={handleSignOut} loading={signOutLoading} disabled={signOutLoading}>Sign Out</Button>
                         </Dialog.Actions>
                     </Dialog>
                 </Portal>
@@ -219,9 +227,11 @@ const styles = StyleSheet.create({
     },
     error: {
         color: InkwellColors.error,
+        textAlign: 'center',
     },
     success: {
-        color: InkwellColors.primary,
+        color: "green",
+        textAlign: 'center',
     },
     signOutButtonContent: {
         flexDirection: 'row-reverse',
