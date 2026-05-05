@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingHorizontal: Spacing.xs,
+        paddingHorizontal: Spacing.md,
         paddingVertical: Spacing.xs,
     },
     content: {

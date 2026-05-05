@@ -186,6 +186,13 @@ export default function SettingsScreen() {
                     Sign Out
                 </Button>
 
+                <View style={styles.copyrightSection}>
+                    <IconButton icon="copyright" size={18} style={styles.copyrightIcon} />
+                    <Text variant="labelMedium" style={styles.copyrightText}>
+                        2026 Inkwell. All rights reserved.
+                    </Text>
+                </View>
+
                 {/* Dialog to confirm sign out */}
                 <Portal>
                     <Dialog visible={signOutDialogVisible} onDismiss={hideSignOutDialog}>
@@ -235,5 +242,19 @@ const styles = StyleSheet.create({
     },
     signOutButtonContent: {
         flexDirection: 'row-reverse',
+    },
+    copyrightSection: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: Spacing.xxl,
+        paddingTop: Spacing.lg,
+    },
+    copyrightIcon: {
+        margin: 0,
+    },
+    copyrightText: {
+        color: InkwellColors.onSurfaceVariant,
+        marginLeft: Spacing.xs,
     },
 });
