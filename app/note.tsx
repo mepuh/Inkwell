@@ -1,8 +1,8 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { BackHandler, StyleSheet, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
-import { Button, IconButton, Text, TextInput } from 'react-native-paper';
+import { Button, Dialog, IconButton, Portal, Text, TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { InkwellColors, Spacing } from '../constants/theme';
 import { addNote, getNoteById, updateNote } from '../services/databaseService';
@@ -12,7 +12,12 @@ export default function NoteScreen() {
     const [content, setContent] = useState('');
     const [createdAt, setCreatedAt] = useState<number | null>(null);
     const [loading, setLoading] = useState(false);
+    const [initialTitle, setInitialTitle] = useState(''); // Store the initial title to compare for unsaved changes
+    const [initialContent, setInitialContent] = useState(''); // Store the initial content to compare for unsaved changes
+    const [showDiscardDialog, setShowDiscardDialog] = useState(false);
     const router = useRouter();
+    // Determine if there are unsaved changes by comparing the current title and content with their initial values
+    const hasUnsavedChanges = title !== initialTitle || content !== initialContent;
     // Get the note ID from the route parameters, which will be used to determine if we are editing an existing note or creating a new one.
     const { id } = useLocalSearchParams<{ id?: string }>();
 
@@ -26,6 +31,8 @@ export default function NoteScreen() {
                 if (note) {
                     setTitle(note.title);
                     setContent(note.content);
+                    setInitialTitle(note.title);
+                    setInitialContent(note.content);
                     setCreatedAt(note.createdAt);
                 }
             } catch {
@@ -35,6 +42,34 @@ export default function NoteScreen() {
 
         loadNote();
     }, [id]);
+
+    // Back handler to prompt the user to confirm discarding changes if they have unsaved changes when they attempt to navigate back using the hardware back button (or back gesture) on Android devices
+    useEffect(() => {
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+            if (hasUnsavedChanges) {
+                setShowDiscardDialog(true);
+                return true;
+            }
+            return false;
+        });
+
+        return () => backHandler.remove();
+    }, [hasUnsavedChanges]);
+
+    // Function to handle the back button press, showing the discard changes dialog if there are unsaved changes or navigating back immediately if there are not
+    const handleBackPress = () => {
+        if (hasUnsavedChanges) {
+            setShowDiscardDialog(true);
+            return;
+        }
+        router.back();
+    };
+
+    // Function to discard changes and navigate back, called when the user confirms they want to discard their changes in the dialog
+    const discardChanges = () => {
+        setShowDiscardDialog(false);
+        router.back();
+    };
 
     // Handler function to save a note
     const handleSave = async () => {
@@ -71,9 +106,10 @@ export default function NoteScreen() {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-                <IconButton icon="arrow-left" onPress={() => router.back()} />
+                <IconButton icon="arrow-left" onPress={handleBackPress} />
                 <Text variant="titleLarge">{id ? 'Edit Note' : 'New Note'}</Text>
-                <Button onPress={handleSave} loading={loading} disabled={loading}>
+                {/* Save cannot be pressed if both title and content are empty, or if the note is currently being saved */}
+                <Button onPress={handleSave} loading={loading} disabled={loading || (!title.trim() && !content.trim())}>
                     Save
                 </Button>
             </View>
@@ -98,6 +134,22 @@ export default function NoteScreen() {
                     style={styles.contentInput}
                 />
             </KeyboardAwareScrollView>
+
+            {/* Dialog for confirming discarding changes if the user attempts to navigate back with unsaved changes */}
+            <Portal>
+                <Dialog visible={showDiscardDialog} onDismiss={() => setShowDiscardDialog(false)}>
+                    <Dialog.Title>Discard changes?</Dialog.Title>
+                    <Dialog.Content>
+                        <Text>You have unsaved changes. If you leave now, they will be lost.</Text>
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                        <Button onPress={() => setShowDiscardDialog(false)}>Stay</Button>
+                        <Button textColor={InkwellColors.error} onPress={discardChanges}>
+                            Discard
+                        </Button>
+                    </Dialog.Actions>
+                </Dialog>
+            </Portal>
         </SafeAreaView>
     );
 }

@@ -1,7 +1,7 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
-import { Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { ActivityIndicator, Button, IconButton, Searchbar, Text, TextInput } from 'react-native-paper';
+import { BackHandler, Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Button, Dialog, IconButton, Portal, Searchbar, Text, TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BorderRadius, InkwellColors, Spacing } from '../constants/theme';
 import {
@@ -20,15 +20,24 @@ const IMAGE_SIZE = (SCREEN_WIDTH - 48) / 3;
 export default function MoodboardScreen() {
     const [title, setTitle] = useState('');
     const [selectedImages, setSelectedImages] = useState<MoodboardImage[]>([]);
+    const [initialTitle, setInitialTitle] = useState(''); // Store the initial title to compare for unsaved changes
+    const [initialSelectedImages, setInitialSelectedImages] = useState<MoodboardImage[]>([]); // Store the initial selected images to compare for unsaved changes
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState<PexelsImage[]>([]);
     const [loading, setLoading] = useState(false);
     const [saving, setSaving] = useState(false);
     const [initialLoading, setInitialLoading] = useState(true);
+    const [showDiscardDialog, setShowDiscardDialog] = useState(false);
     const [page, setPage] = useState(1);
     const [hasNextPage, setHasNextPage] = useState(false);
     const router = useRouter();
     const { id } = useLocalSearchParams<{ id?: string }>();
+    // Determine if there are unsaved changes by comparing the current title and selected images with their initial values, using a stringified version of the selected images for comparison since they are arrays of objects
+    const selectedImagesKey = selectedImages.map(image => `${image.id}|${image.url}|${image.photographer ?? ''}|${image.alt ?? ''}`).join('||');
+    const initialSelectedImagesKey = initialSelectedImages
+        .map(image => `${image.id}|${image.url}|${image.photographer ?? ''}|${image.alt ?? ''}`)
+        .join('||');
+    const hasUnsavedChanges = title !== initialTitle || selectedImagesKey !== initialSelectedImagesKey;
 
     // Function to load initial data when the component mounts, including fetching the moodboard to edit (if an ID is provided) and fetching curated images to display as initial search results
     const loadInitial = useCallback(async () => {
@@ -39,17 +48,47 @@ export default function MoodboardScreen() {
                 if (board) {
                     setTitle(board.title);
                     setSelectedImages(board.images ?? []);
+                    setInitialTitle(board.title);
+                    setInitialSelectedImages(board.images ?? []);
                 }
             }
             const curated = await getCuratedImages(1, 21);
             setSearchResults(curated.images);
             setHasNextPage(!!curated.nextPage);
         } catch {
-            console.error('Failed to load moodboard');
+            console.error('Failed to load moodboard or images');
         } finally {
             setInitialLoading(false);
         }
     }, [id]);
+
+    // Back handler to prompt the user to confirm discarding changes if they have unsaved changes when they attempt to navigate back using the hardware back button (or back gesture) on Android devices
+    useEffect(() => {
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+            if (hasUnsavedChanges) {
+                setShowDiscardDialog(true);
+                return true;
+            }
+            return false;
+        });
+
+        return () => backHandler.remove();
+    }, [hasUnsavedChanges]);
+
+    // Function to handle the back button press, showing the discard changes dialog if there are unsaved changes or navigating back immediately if there are not
+    const handleBackPress = () => {
+        if (hasUnsavedChanges) {
+            setShowDiscardDialog(true);
+            return;
+        }
+        router.back();
+    };
+
+    // Function to discard changes and navigate back, called when the user confirms they want to discard their changes in the dialog
+    const discardChanges = () => {
+        setShowDiscardDialog(false);
+        router.back();
+    };
 
     useEffect(() => {
         loadInitial();
@@ -152,10 +191,10 @@ export default function MoodboardScreen() {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-                <IconButton icon="arrow-left" onPress={() => router.back()} />
+                <IconButton icon="arrow-left" onPress={handleBackPress} />
                 <Text variant="titleLarge">{id ? 'Edit Moodboard' : 'New Moodboard'}</Text>
                 {/* Save cannot be pressed if the title is empty or the moodboard is being saved */}
-                <Button onPress={handleSave} loading={saving} disabled={saving || !title.trim()}> 
+                <Button onPress={handleSave} loading={saving} disabled={saving || !title.trim()}>
                     Save
                 </Button>
             </View>
@@ -203,6 +242,7 @@ export default function MoodboardScreen() {
                 style={styles.searchbar}
             />
 
+            {/* Render the search results in a grid using FlatList */}
             <FlatList
                 data={searchResults}
                 keyExtractor={item => String(item.id)}
@@ -229,6 +269,22 @@ export default function MoodboardScreen() {
                     );
                 }}
             />
+
+            {/* Dialog for confirming discarding changes if the user attempts to navigate back with unsaved changes */}
+            <Portal>
+                <Dialog visible={showDiscardDialog} onDismiss={() => setShowDiscardDialog(false)}>
+                    <Dialog.Title>Discard changes?</Dialog.Title>
+                    <Dialog.Content>
+                        <Text>You have unsaved changes. If you leave now, they will be lost.</Text>
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                        <Button onPress={() => setShowDiscardDialog(false)}>Stay</Button>
+                        <Button textColor={InkwellColors.error} onPress={discardChanges}>
+                            Discard
+                        </Button>
+                    </Dialog.Actions>
+                </Dialog>
+            </Portal>
         </SafeAreaView>
     );
 }

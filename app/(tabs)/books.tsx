@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: InkwellColors.surface,
-        padding: Spacing.md,
+        paddingHorizontal: Spacing.md,
     },
     header: {
         flexDirection: 'row',
