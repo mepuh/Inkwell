@@ -4,6 +4,7 @@ import { auth, database } from './firebaseConfig';
 // Helper function to get a reference to the current user's data in the database
 const userRef = (path: string) => {
     const uid = auth.currentUser?.uid;
+    // Centralized auth guard so all per-user paths fail fast when no user is signed in
     if (!uid) throw new Error('User not authenticated');
     return ref(database, `users/${uid}/${path}`);
 };
@@ -54,4 +55,41 @@ export const getNotes = async (): Promise<Note[]> => {
         id,
         ...(note as Omit<Note, 'id'>),
     }));
+};
+
+// ========== FAVOURITE BOOKS ==========
+
+export type FavouriteBook = {
+    id: string;
+    title: string;
+    authors: string[];
+    thumbnail: string;
+    savedAt: number;
+};
+
+// Function to add a book to the user's list of favourite books in the database
+export const addFavouriteBook = async (book: FavouriteBook): Promise<void> => {
+    await set(ref(database, `users/${auth.currentUser?.uid}/favouriteBooks/${book.id}`), book);
+};
+
+// Function to remove a book from the user's list of favourite books in the database by its ID
+export const removeFavouriteBook = async (id: string): Promise<void> => {
+    await remove(ref(database, `users/${auth.currentUser?.uid}/favouriteBooks/${id}`));
+};
+
+// Function to fetch all favourite books for the current user from the database, returning them as an array of FavouriteBook objects
+export const getFavouriteBooks = async (): Promise<FavouriteBook[]> => {
+    const snapshot = await get(userRef('favouriteBooks'));
+    if (!snapshot.exists()) return [];
+    const data = snapshot.val();
+    // Firebase stores favourite books as an object map keyed by book id
+    return Object.values(data) as FavouriteBook[];
+};
+
+// Function to check if a specific book is in the user's list of favourite books by its ID, returning true if it exists and false otherwise
+export const isBookFavourited = async (id: string): Promise<boolean> => {
+    const snapshot = await get(
+        ref(database, `users/${auth.currentUser?.uid}/favouriteBooks/${id}`)
+    );
+    return snapshot.exists();
 };
