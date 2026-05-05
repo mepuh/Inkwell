@@ -1,7 +1,7 @@
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { FlatList, Image, StyleSheet, View } from 'react-native';
-import { ActivityIndicator, Button, Card, Dialog, FAB, IconButton, Portal, Text } from 'react-native-paper';
+import { ActivityIndicator, Button, Card, Dialog, FAB, IconButton, Portal, Searchbar, Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { InkwellColors, Spacing } from '../../constants/theme';
 import { deleteMoodboard, getMoodboards, Moodboard } from '../../services/databaseService';
@@ -10,6 +10,7 @@ export default function MoodboardsScreen() {
     const [moodboards, setMoodboards] = useState<Moodboard[]>([]);
     const [loading, setLoading] = useState(true);
     const [moodboardIdToDelete, setMoodboardIdToDelete] = useState<string | null>(null);
+    const [searchQuery, setSearchQuery] = useState('');
     const router = useRouter();
 
     // Function to fetch all moodboards for the current user and update the state, sorted by most recently updated first
@@ -22,6 +23,17 @@ export default function MoodboardsScreen() {
         } finally {
             setLoading(false);
         }
+    };
+
+    // Function to filter moodboards based on search query
+    const getFilteredMoodboards = () => {
+        if (!searchQuery.trim()) {
+            return moodboards;
+        }
+
+        return moodboards.filter(board =>
+            (board.title || 'Untitled').toLowerCase().includes(searchQuery.toLowerCase())
+        );
     };
 
     // Use useFocusEffect to fetch moodboards whenever the screen comes into focus, ensuring the list is up to date
@@ -152,6 +164,16 @@ export default function MoodboardsScreen() {
                 <View style={{ width: 40 }} />
             </View>
 
+            {/* Search bar - shown when moodboards exist */}
+            {moodboards.length > 0 && (
+                <Searchbar
+                    placeholder="Search moodboards by title..."
+                    onChangeText={setSearchQuery}
+                    value={searchQuery}
+                    style={styles.searchbar}
+                />
+            )}
+
             {loading ? (
                 <ActivityIndicator style={styles.loader} />
             ) : moodboards.length === 0 ? (
@@ -159,9 +181,9 @@ export default function MoodboardsScreen() {
             ) : (
                 // Render a FlatList of moodboards
                 <FlatList
-                    data={moodboards}
                     keyExtractor={item => item.id!}
                     numColumns={2}
+                    data={getFilteredMoodboards()}
                     columnWrapperStyle={styles.columnWrapper}
                     contentContainerStyle={styles.listContent}
                     renderItem={({ item }) => (
@@ -326,5 +348,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 16,
         bottom: 16,
+    },
+     searchbar: {
+        marginHorizontal: Spacing.md,
+        marginTop: Spacing.xs,
+        marginBottom: Spacing.md,
+        backgroundColor: InkwellColors.background,
+        borderWidth: 1.5,
+        borderColor: InkwellColors.surfaceVariant,
     },
 });

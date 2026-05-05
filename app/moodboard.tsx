@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
         paddingRight: Spacing.lg,
     },
     titleInput: {
-        marginHorizontal: Spacing.lg,
+        marginHorizontal: Spacing.xl,
         marginBottom: Spacing.sm,
     },
     selectedSection: {
@@ -341,6 +341,9 @@ const styles = StyleSheet.create({
     searchbar: {
         marginHorizontal: Spacing.lg,
         marginVertical: Spacing.sm,
+        backgroundColor: InkwellColors.background,
+        borderWidth: 1.5,
+        borderColor: InkwellColors.surfaceVariant,
     },
     imageWrapper: {
         margin: Spacing.xs,

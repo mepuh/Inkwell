@@ -1,7 +1,7 @@
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { FlatList, Image, StyleSheet, View } from 'react-native';
-import { ActivityIndicator, Button, Card, Dialog, FAB, IconButton, Portal, Text } from 'react-native-paper';
+import { ActivityIndicator, Button, Card, Dialog, FAB, IconButton, Portal, Searchbar, Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BorderRadius, InkwellColors, Spacing } from '../../constants/theme';
 import { deleteNote, getNotes, Note } from '../../services/databaseService';
@@ -10,6 +10,7 @@ export default function NotebookScreen() {
     const [notes, setNotes] = useState<Note[]>([]);
     const [loading, setLoading] = useState(true);
     const [noteIdToDelete, setNoteIdToDelete] = useState<string | null>(null);
+    const [searchQuery, setSearchQuery] = useState('');
     const router = useRouter();
 
     // Function to fetch notes from the database and sort them by updatedAt in descending order (most recent first)
@@ -23,6 +24,16 @@ export default function NotebookScreen() {
         } finally {
             setLoading(false);
         }
+    };
+
+    // Function to filter notes based on search query
+    const getFilteredNotes = () => {
+        if (!searchQuery.trim()) {
+            return notes;
+        }
+        return notes.filter(note =>
+            (note.title || 'Untitled').toLowerCase().includes(searchQuery.toLowerCase())
+        );
     };
 
     // Use useFocusEffect to fetch notes whenever the screen comes into focus, ensuring that the list is always up to date when the user navigates back to it
@@ -77,6 +88,16 @@ export default function NotebookScreen() {
                 <View style={{ width: 40 }} />
             </View>
 
+            {/* Search bar - shown when notes exist */}
+            {notes.length > 0 && (
+                <Searchbar
+                    placeholder="Search notes by title..."
+                    onChangeText={setSearchQuery}
+                    value={searchQuery}
+                    style={styles.searchbar}
+                />
+            )}
+
             {loading ? (
                 <ActivityIndicator size="large" style={styles.loader} />
             ) : notes.length === 0 ? (
@@ -84,7 +105,7 @@ export default function NotebookScreen() {
             ) : (
                 // Render the list of notes using FlatList
                 <FlatList style={styles.list}
-                    data={notes}
+                    data={getFilteredNotes()}
                     keyExtractor={item => item.id!}
                     renderItem={({ item }) => (
                         <Card
@@ -197,5 +218,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: Spacing.lg,
         bottom: Spacing.lg,
+    },
+    searchbar: {
+        marginHorizontal: Spacing.md,
+        marginTop: Spacing.xs,
+        marginBottom: Spacing.md,
+        backgroundColor: InkwellColors.background,
+        borderWidth: 1.5,
+        borderColor: InkwellColors.surfaceVariant,
     },
 });

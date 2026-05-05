@@ -321,6 +321,9 @@ const styles = StyleSheet.create({
     searchbar: {
         marginTop: Spacing.sm,
         marginBottom: Spacing.md,
+        backgroundColor: InkwellColors.background,
+        borderWidth: 1.5,
+        borderColor: InkwellColors.surfaceVariant,
     },
     filterLabel: {
         marginBottom: Spacing.sm,
@@ -447,6 +450,6 @@ const styles = StyleSheet.create({
         margin: Spacing.lg,
         right: 0,
         bottom: 0,
-        backgroundColor: InkwellColors.secondary,
+        backgroundColor: InkwellColors.surfaceVariant,
     },
 });
