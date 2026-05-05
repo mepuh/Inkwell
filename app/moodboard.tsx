@@ -17,10 +17,17 @@ import { getCuratedImages, PexelsImage, searchImages } from '../services/imagesS
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const IMAGE_SIZE = (SCREEN_WIDTH - 48) / 3;
 
+// Utility function to ensure uniqueness of images by their ID, used to prevent duplicate images in the search results when merging new results with existing ones
+const uniqueImagesById = (images: PexelsImage[]) => {
+    return Array.from(new Map(images.map(image => [String(image.id), image])).values());
+};
+
 export default function MoodboardScreen() {
     const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
     const [selectedImages, setSelectedImages] = useState<MoodboardImage[]>([]);
     const [initialTitle, setInitialTitle] = useState(''); // Store the initial title to compare for unsaved changes
+    const [initialDescription, setInitialDescription] = useState(''); // Store the initial description to compare for unsaved changes
     const [initialSelectedImages, setInitialSelectedImages] = useState<MoodboardImage[]>([]); // Store the initial selected images to compare for unsaved changes
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState<PexelsImage[]>([]);
@@ -32,12 +39,12 @@ export default function MoodboardScreen() {
     const [hasNextPage, setHasNextPage] = useState(false);
     const router = useRouter();
     const { id } = useLocalSearchParams<{ id?: string }>();
-    // Determine if there are unsaved changes by comparing the current title and selected images with their initial values, using a stringified version of the selected images for comparison since they are arrays of objects
+    // Determine if there are unsaved changes by comparing the current title, description, and selected images with their initial values, using a stringified version of the selected images for comparison since they are arrays of objects
     const selectedImagesKey = selectedImages.map(image => `${image.id}|${image.url}|${image.photographer ?? ''}|${image.alt ?? ''}`).join('||');
     const initialSelectedImagesKey = initialSelectedImages
         .map(image => `${image.id}|${image.url}|${image.photographer ?? ''}|${image.alt ?? ''}`)
         .join('||');
-    const hasUnsavedChanges = title !== initialTitle || selectedImagesKey !== initialSelectedImagesKey;
+    const hasUnsavedChanges = title !== initialTitle || description !== initialDescription || selectedImagesKey !== initialSelectedImagesKey;
 
     // Function to load initial data when the component mounts, including fetching the moodboard to edit (if an ID is provided) and fetching curated images to display as initial search results
     const loadInitial = useCallback(async () => {
@@ -48,12 +55,14 @@ export default function MoodboardScreen() {
                 if (board) {
                     setTitle(board.title);
                     setSelectedImages(board.images ?? []);
+                    setDescription(board.description ?? '');
                     setInitialTitle(board.title);
+                    setInitialDescription(board.description ?? '');
                     setInitialSelectedImages(board.images ?? []);
                 }
             }
             const curated = await getCuratedImages(1, 21);
-            setSearchResults(curated.images);
+            setSearchResults(uniqueImagesById(curated.images));
             setHasNextPage(!!curated.nextPage);
         } catch {
             console.error('Failed to load moodboard or images');
@@ -105,10 +114,10 @@ export default function MoodboardScreen() {
                 perPage: 21,
             });
             if (resetPage) {
-                setSearchResults(results.images);
+                setSearchResults(uniqueImagesById(results.images));
                 setPage(1);
             } else {
-                setSearchResults(prev => [...prev, ...results.images]);
+                setSearchResults(prev => uniqueImagesById([...prev, ...results.images]));
             }
             setHasNextPage(!!results.nextPage);
         } catch {
@@ -128,7 +137,7 @@ export default function MoodboardScreen() {
             const results = searchQuery.trim()
                 ? await searchImages(searchQuery, { page: nextPage, perPage: 21 })
                 : await getCuratedImages(nextPage, 21);
-            setSearchResults(prev => [...prev, ...results.images]);
+            setSearchResults(prev => uniqueImagesById([...prev, ...results.images]));
             setHasNextPage(!!results.nextPage);
         } catch {
             console.error('Failed to load more images');
@@ -162,6 +171,7 @@ export default function MoodboardScreen() {
         const now = Date.now();
         const moodboardData: Omit<Moodboard, 'id'> = {
             title: title.trim(),
+            description: description.trim(),
             images: selectedImages ?? [],
             createdAt: now,
             updatedAt: now,
@@ -207,6 +217,16 @@ export default function MoodboardScreen() {
                 style={styles.titleInput}
             />
 
+            <TextInput
+                label="Description (optional)"
+                mode="outlined"
+                value={description}
+                onChangeText={setDescription}
+                style={styles.descriptionInput}
+                multiline
+                numberOfLines={3}
+            />
+
             {/* If there are selected images, display them in a horizontal list at the top, allowing the user to see which images they have selected and remove them if desired */}
             {selectedImages.length > 0 && (
                 <View style={styles.selectedSection}>
@@ -215,7 +235,8 @@ export default function MoodboardScreen() {
                     </Text>
                     <FlatList
                         data={selectedImages}
-                        keyExtractor={item => item.id}
+                        // Use a combination of image ID, URL and index as the key to ensure uniqueness even if the same image is selected multiple times (This should be prevented by the toggle logic, but this is an extra safeguard as there were errors with duplicate keys during development)
+                        keyExtractor={(item, index) => `${item.id}-${item.url}-${index}`}
                         horizontal
                         showsHorizontalScrollIndicator={false}
                         renderItem={({ item }) => (
@@ -306,6 +327,10 @@ const styles = StyleSheet.create({
         paddingRight: Spacing.lg,
     },
     titleInput: {
+        marginHorizontal: Spacing.xl,
+        marginBottom: Spacing.sm,
+    },
+    descriptionInput: {
         marginHorizontal: Spacing.xl,
         marginBottom: Spacing.sm,
     },

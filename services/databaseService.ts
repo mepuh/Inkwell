@@ -106,6 +106,7 @@ export type MoodboardImage = {
 export type Moodboard = {
     id?: string;
     title: string;
+    description?: string;
     images: MoodboardImage[];
     createdAt: number;
     updatedAt: number;

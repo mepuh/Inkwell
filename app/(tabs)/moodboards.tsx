@@ -190,7 +190,7 @@ export default function MoodboardsScreen() {
                         <Card
                             style={styles.card}
                             // Navigate to the moodboard editing screen when the card is pressed, passing the moodboard ID as a route parameter
-                            onPress={() => router.push({ pathname: '/moodboard', params: { id: item.id } })}
+                            onPress={() => router.push({ pathname: '/moodboard-view', params: { id: item.id } })}
                         >
                             {/* Render the mosaic preview of the moodboard images at the top of the card */}
                             <View style={styles.mosaicWrapper}>{renderMosaicPreview(item.images)}</View>
