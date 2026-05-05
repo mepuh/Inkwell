@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { ActivityIndicator, Button, Card, Chip, Divider, IconButton, Text, TextInput } from 'react-native-paper';
+import * as Clipboard from 'expo-clipboard';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BorderRadius, InkwellColors, Spacing } from '../constants/theme';
 import { fetchSingleQuote, Quote, quoteCategories, QuoteCategory } from '../services/quotesService';
@@ -35,6 +36,7 @@ export default function QuotesScreen() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [hasSearched, setHasSearched] = useState(false); // Track whether the user has performed a search to determine when to show the "no results" message if no quote is found
+    const [copied, setCopied] = useState(false); // Track whether the quote has been copied to the clipboard to provide user feedback
 
     // Determine if any filters are currently applied to enable or disable the "Find a Match" button
     const hasFilters = includedCategories.length > 0 || excludedCategories.length > 0 || author.trim().length > 0;
@@ -128,6 +130,15 @@ export default function QuotesScreen() {
         setHasSearched(false);
     };
 
+    // Function to copy the current quote to the clipboard with user feedback
+    const handleCopy = async () => {
+        if (!quote) return;
+        const text = `"${quote.quote}" - ${quote.author}`;
+        await Clipboard.setStringAsync(text);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
@@ -183,6 +194,16 @@ export default function QuotesScreen() {
                                 Categories: {quote.categories.join(', ')}
                             </Text>
                         </Card.Content>
+                        {/* Action button to copy the quote to the clipboard, with user feedback to indicate when the quote has been successfully copied */}
+                        <Card.Actions>
+                            <Button
+                                icon={copied ? 'check' : 'content-copy'}
+                                mode="text"
+                                onPress={handleCopy}
+                            >
+                                {copied ? 'Copied' : 'Copy'}
+                            </Button>
+                        </Card.Actions>
                     </Card>
                 )}
 
@@ -311,6 +332,16 @@ export default function QuotesScreen() {
                                 Categories: {quote.categories.join(', ')}
                             </Text>
                         </Card.Content>
+                        {/* Action button to copy the quote to the clipboard, with user feedback to indicate when the quote has been successfully copied */}
+                        <Card.Actions>
+                            <Button
+                                icon={copied ? 'check' : 'content-copy'}
+                                mode="text"
+                                onPress={handleCopy}
+                            >
+                                {copied ? 'Copied' : 'Copy'}
+                            </Button>
+                        </Card.Actions>
                     </Card>
                 )}
             </KeyboardAwareScrollView>
