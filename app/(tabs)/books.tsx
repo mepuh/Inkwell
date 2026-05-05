@@ -68,8 +68,8 @@ export default function BooksScreen() {
             const results = await searchBooks(searchQuery, searchFilterValue, previewFilter, 0);
             setBooks(dedupeBooksById(results));
             setHasMoreResults(results.length === 20);
-        } catch {
-            setError('Something went wrong. Please try again.');
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
         } finally {
             setLoading(false);
         }
@@ -92,8 +92,8 @@ export default function BooksScreen() {
                 setStartIndex(nextIndex);
             }
             setHasMoreResults(results.length === 20);
-        } catch {
-            setError('Failed to load more results.');
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Failed to load more results.');
         } finally {
             setLoadingMore(false);
         }
