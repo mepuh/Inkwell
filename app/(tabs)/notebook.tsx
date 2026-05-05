@@ -78,11 +78,9 @@ export default function NotebookScreen() {
             </View>
 
             {loading ? (
-                <ActivityIndicator size="large" style={styles.loading} />
+                <ActivityIndicator size="large" style={styles.loader} />
             ) : notes.length === 0 ? (
-                <Text variant="bodyLarge" style={styles.empty}>
-                    No notes yet. Tap + to create one!
-                </Text>
+                <Text style={styles.empty}>No notes yet. Tap + to create one!</Text>
             ) : (
                 // Render the list of notes using FlatList
                 <FlatList style={styles.list}
@@ -163,16 +161,13 @@ const styles = StyleSheet.create({
         width: 72,
         height: 72,
     },
-    loading: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+    loader: {
+        marginTop: Spacing.lg,
     },
     empty: {
-        flex: 1,
         textAlign: 'center',
-        textAlignVertical: 'center',
-        color: InkwellColors.onBackground,
+        marginTop: Spacing.lg,
+        opacity: 0.6,
     },
     list: {
         padding: Spacing.xs,

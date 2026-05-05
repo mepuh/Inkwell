@@ -332,19 +332,18 @@ const styles = StyleSheet.create({
         gap: Spacing.sm,
         marginBottom: Spacing.md,
     },
-    filterHelp: {
-        opacity: 0.65,
-        marginBottom: Spacing.sm,
-    },
     chip: {
         marginBottom: Spacing.sm,
     },
     loading: {
         marginTop: Spacing.md,
+        marginBottom: Spacing.md,
     },
     error: {
         color: InkwellColors.error,
-        marginTop: Spacing.sm,
+        textAlign: 'center',
+        marginTop: Spacing.xs,
+        marginBottom: Spacing.sm,
     },
     empty: {
         textAlign: 'center',
