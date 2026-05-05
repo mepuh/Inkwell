@@ -93,3 +93,58 @@ export const isBookFavourited = async (id: string): Promise<boolean> => {
     );
     return snapshot.exists();
 };
+
+// ========== MOODBOARDS ==========
+
+export type MoodboardImage = {
+    id: string;
+    url: string;
+    photographer?: string;
+    alt?: string;
+};
+
+export type Moodboard = {
+    id?: string;
+    title: string;
+    images: MoodboardImage[];
+    createdAt: number;
+    updatedAt: number;
+};
+
+// Function to add a new moodboard to the database, returning the generated moodboard ID
+export const addMoodboard = async (moodboard: Omit<Moodboard, 'id'>): Promise<string> => {
+    const newRef = push(userRef('moodboards'));
+    await set(newRef, moodboard);
+    return newRef.key!;
+};
+
+// Function to update an existing moodboard in the database by its ID
+export const updateMoodboard = async (id: string, moodboard: Partial<Omit<Moodboard, 'id'>>): Promise<void> => {
+    await update(userRef(`moodboards/${id}`), moodboard);
+};
+
+// Function to delete a moodboard from the database by its ID
+export const deleteMoodboard = async (id: string): Promise<void> => {
+    await remove(userRef(`moodboards/${id}`));
+};
+
+// Function to fetch a single moodboard by its ID for the current user
+export const getMoodboardById = async (id: string): Promise<Moodboard | null> => {
+    const snapshot = await get(userRef(`moodboards/${id}`));
+    if (!snapshot.exists()) return null;
+    return {
+        id,
+        ...(snapshot.val() as Omit<Moodboard, 'id'>),
+    };
+};
+
+// Function to fetch all moodboards for the current user from the database, returning them as an array of Moodboard objects
+export const getMoodboards = async (): Promise<Moodboard[]> => {
+    const snapshot = await get(userRef('moodboards'));
+    if (!snapshot.exists()) return [];
+    const data = snapshot.val();
+    return Object.entries(data).map(([id, board]) => ({
+        id,
+        ...(board as Omit<Moodboard, 'id'>),
+    }));
+};

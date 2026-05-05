@@ -43,9 +43,9 @@ export default function Layout() {
                 }}
             />
             <Tabs.Screen
-                name="moodboard"
+                name="moodboards"
                 options={{
-                    title: "Moodboard",
+                    title: "Moodboards",
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name="image-frame" color={color} size={size} />
                     ),
