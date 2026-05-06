@@ -1,6 +1,6 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
-import { BackHandler, Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { BackHandler, FlatList, Image, StyleSheet, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 import { ActivityIndicator, Button, Dialog, IconButton, Portal, Searchbar, Text, TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BorderRadius, InkwellColors, Spacing } from '../constants/theme';
@@ -12,10 +12,6 @@ import {
     updateMoodboard,
 } from '../services/databaseService';
 import { getCuratedImages, PexelsImage, searchImages } from '../services/imagesService';
-
-// Calculate image size for a 3-column grid based on screen width and desired spacing
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const IMAGE_SIZE = (SCREEN_WIDTH - 48) / 3;
 
 // Utility function to ensure uniqueness of images by their ID, used to prevent duplicate images in the search results when merging new results with existing ones
 const uniqueImagesById = (images: PexelsImage[]) => {
@@ -39,6 +35,9 @@ export default function MoodboardScreen() {
     const [hasNextPage, setHasNextPage] = useState(false);
     const router = useRouter();
     const { id } = useLocalSearchParams<{ id?: string }>();
+    // Keep grid sizing responsive when window dimensions change
+    const { width } = useWindowDimensions();
+    const imageSize = (width - 48) / 3;
     // Determine if there are unsaved changes by comparing the current title, description, and selected images with their initial values, using a stringified version of the selected images for comparison since they are arrays of objects
     const selectedImagesKey = selectedImages.map(image => `${image.id}|${image.url}|${image.photographer ?? ''}|${image.alt ?? ''}`).join('||');
     const initialSelectedImagesKey = initialSelectedImages
@@ -279,7 +278,7 @@ export default function MoodboardScreen() {
                         <TouchableOpacity onPress={() => toggleImage(item)} style={styles.imageWrapper}>
                             <Image
                                 source={{ uri: item.src.medium }}
-                                style={[styles.gridImage, isSelected && styles.selectedImage]}
+                                style={[{ width: imageSize, height: imageSize }, isSelected && styles.selectedImage]}
                             />
                             {isSelected && (
                                 <View style={styles.checkOverlay}>
@@ -374,11 +373,6 @@ const styles = StyleSheet.create({
         margin: Spacing.xs,
         position: 'relative',
     },
-    gridImage: {
-        width: IMAGE_SIZE,
-        height: IMAGE_SIZE,
-    },
-
     gridContent: {
         paddingHorizontal: Spacing.lg,
         alignItems: 'center',
