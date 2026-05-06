@@ -72,6 +72,8 @@ export default function NotebookScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
+
+            {/* Header with mirrored logos and title */}
             <View style={styles.header}>
                 <View style={{ width: 40 }} />
                 <Image
@@ -120,7 +122,7 @@ export default function NotebookScreen() {
                                 <Text variant="labelSmall" style={styles.noteDate}>
                                     {new Date(item.updatedAt).toLocaleString()}
                                 </Text>
-                                <Text numberOfLines={3} variant="bodyMedium" style={styles.noteContent}>
+                                <Text numberOfLines={4} variant="bodyMedium" style={styles.noteContent}>
                                     {item.content?.trim() || 'No content'}
                                 </Text>
                             </Card.Content>
@@ -208,7 +210,7 @@ const styles = StyleSheet.create({
         color: InkwellColors.onSurfaceVariant,
     },
     noteContent: {
-        lineHeight: 20,
+        lineHeight: 18,
         color: InkwellColors.onSurface,
     },
     cardActions: {
